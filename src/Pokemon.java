@@ -15,10 +15,10 @@ public abstract class Pokemon {
         this.defence=100;
         this.lifePoints=100;
     }
-    Pokemon(String name,String size,String look,int attack,int defence,int lifePoints){
+    Pokemon(String name,String size,String appearance,int attack,int defence,int lifePoints){
         this.name=name;
         this.size=size;
-        this.appearance =look;
+        this.appearance =appearance;
         this.attack=attack;
         this.defence=defence;
         this.lifePoints=lifePoints;

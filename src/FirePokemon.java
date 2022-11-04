@@ -15,7 +15,7 @@ public class FirePokemon extends Pokemon{
         return "FirePokemon{" +
                 ", name='" + name + '\'' +
                 ", size='" + size + '\'' +
-                ", look='" + appearance + '\'' +
+                ", appearance='" + appearance + '\'' +
                 ", attack=" + attack +
                 ", defence=" + defence +
                 ", lifePoints=" + lifePoints +
