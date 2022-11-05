@@ -29,7 +29,7 @@ public abstract class Pokemon {
         return "Pokemon{" +
                 "name='" + name + '\'' +
                 ", size='" + size + '\'' +
-                ", look='" + appearance + '\'' +
+                ", appearance='" + appearance + '\'' +
                 ", attack=" + attack +
                 ", defence=" + defence +
                 ", lifePoints=" + lifePoints +
