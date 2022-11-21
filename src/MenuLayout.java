@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public  class MenuLayout {
-    ArrayList<Pokemon> pokemonChoice;
+    ArrayList<Pokemon> pokemonChoice=new ArrayList<>();
     ArrayList<Pokemon> myPokemon=new ArrayList<>();
-    public MenuLayout(){
+    public MenuLayout(ArrayList<Pokemon>pokemonChoice,ArrayList<Pokemon>myPokemon){
+        this.pokemonChoice=pokemonChoice;
+        this.myPokemon=myPokemon;
     }
     public static void drawFiles(String pathname) {
         Scanner sc = null;
