@@ -18,8 +18,8 @@ public class Main {
         Scanner in = new Scanner(System.in);
         menu.printMainMenu(in);
 
-        for (int i = 0; i < myPokemon.size(); i++) {                    //test
-            System.out.println(myPokemon.get(i));
+        for (Pokemon pokemon : myPokemon) {                    //test
+            System.out.println(pokemon);
         }
 
 
