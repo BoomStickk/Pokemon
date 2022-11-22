@@ -35,5 +35,6 @@ public abstract class Pokemon {
                 ", lifePoints=" + lifePoints +
                 '}';
     }
+    public abstract int calculateElementalAttack();
 
 }

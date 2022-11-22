@@ -1,7 +1,7 @@
-public class FirePokemon extends Pokemon{
-    private final String type="fire";
+public class RockPokemon extends Pokemon{
+    private final String type="ground";
 
-    FirePokemon(String name,String size,String appearance,int attack,int defence,int lifePoints){
+    RockPokemon(String name, String size, String appearance, int attack, int defence, int lifePoints){
         super(name,size,appearance,attack,defence,lifePoints);
 
 
@@ -9,7 +9,7 @@ public class FirePokemon extends Pokemon{
 
     @Override
     public String toString() {
-        return "FirePokemon{" +
+        return "GroundPokemon{" +
                 ", name='" + name + '\'' +
                 ", size='" + size + '\'' +
                 ", appearance='" + appearance + '\'' +
@@ -25,3 +25,5 @@ public class FirePokemon extends Pokemon{
         return 0;
     }
 }
+
+
