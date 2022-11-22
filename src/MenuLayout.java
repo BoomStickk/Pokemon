@@ -53,46 +53,50 @@ public class MenuLayout {
 
     public static void choosePokemon(ArrayList<Pokemon> pokemonChoice, Scanner in, ArrayList<Pokemon> myPokemon) {
         System.out.println("Choose 3 pokemon: ");
-        while(myPokemon.size()<3) {
-            System.out.println("pokemon No"+(myPokemon.size()+1));
+        int a = 0, b = 0, c = 0, d = 0, e = 0;
+        while (myPokemon.size() < 3) {
+            System.out.println("pokemon No" + (myPokemon.size() + 1));
             checkValidInput(in, "[12345]", "Invalid input(1,2,3,4,5): ");
             int choice = in.nextInt();
-            if (checkIfAlreadyChosen(pokemonChoice, myPokemon)) {
-                switch (choice) {
-                    case 1 -> {
-                        myPokemon.add(pokemonChoice.get(0));
-                        pokemonChoice.set(0, null);
-                    }
-                    case 2 -> {
-                        myPokemon.add(pokemonChoice.get(1));
-                        pokemonChoice.set(1, null);
-                    }
-                    case 3 -> {
-                        myPokemon.add(pokemonChoice.get(2));
-                        pokemonChoice.set(2, null);
-                    }
-                    case 4 -> {
-                        myPokemon.add(pokemonChoice.get(3));
-                        pokemonChoice.set(3, null);
-                    }
-                    case 5 -> {
-                        myPokemon.add(pokemonChoice.get(4));
-                        pokemonChoice.set(4, null);
-                    }
+            switch (choice) {
+
+                case 1 -> {
+                    if (checkIfChose(a)) continue;
+                    myPokemon.add(pokemonChoice.get(0));
+                    a = 1;
+                }
+                case 2 -> {
+                    if (checkIfChose(b)) continue;
+                    myPokemon.add(pokemonChoice.get(1));
+                    b = 1;
+                }
+                case 3 -> {
+                    if (checkIfChose(c)) continue;
+                    myPokemon.add(pokemonChoice.get(2));
+                    c = 1;
+                }
+                case 4 -> {
+                    if (checkIfChose(d)) continue;
+                    myPokemon.add(pokemonChoice.get(3));
+                    d = 1;
+                }
+                case 5 -> {
+                    if (checkIfChose(e)) continue;
+                    myPokemon.add(pokemonChoice.get(4));
+                    e = 1;
                 }
             }
         }
     }
 
-
-    public static boolean checkIfAlreadyChosen(ArrayList<Pokemon> pokemonChoice, ArrayList<Pokemon> myPokemon) {
-        for (int i = 0; i < pokemonChoice.size(); i++) {
-            if (myPokemon.contains(pokemonChoice.get(i))) {
-                System.out.println("You have already chosen that pokemon(try another)");
-                return false;
-            }
+    private static boolean checkIfChose(int a) {
+        if (a > 0) {
+            System.out.println("You have already chosen that pokemon(try another)");
+            return true;
         }
-        return true;
+        return false;
     }
+
+
 }
 
