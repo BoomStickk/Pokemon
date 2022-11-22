@@ -27,16 +27,18 @@ public class MenuLayout {
     }
 
     public void printMainMenu(Scanner in) {
-
+        int choice;
+        do {
             System.out.println("""
                     1.NEW GAME
                     2.INFO
                     3.ABOUT
                     4.EXIT""");
             checkValidInput(in, "[1234]", "Invalid input(1,2,3,4): ");
-            int choice = in.nextInt();
+            choice = in.nextInt();
             chooseMenuOption(in, choice);
-        }
+        } while (choice != 4);
+    }
 
     private void chooseMenuOption(Scanner in, int choice) {
 
@@ -44,20 +46,16 @@ public class MenuLayout {
             case 1 -> {
                 drawFiles("ash.txt");
                 promptEnterKey();
-
                 choosePokemon(pokemonChoice, in, myPokemon);
                 promptEnterKey();
-                printMainMenu(in);
             }
             case 2 -> {
                 MenuLayout.drawFiles("info.txt");
                 promptEnterKey();
-                printMainMenu(in);
             }
             case 3 -> {
                 MenuLayout.drawFiles("about.txt");
                 promptEnterKey();
-                printMainMenu(in);
             }
             case 4 -> MenuLayout.drawFiles("thanks.txt");
         }
@@ -117,7 +115,8 @@ public class MenuLayout {
         }
         return false;
     }
-    public void promptEnterKey(){
+
+    public void promptEnterKey() {
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }
