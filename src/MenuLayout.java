@@ -28,19 +28,38 @@ public class MenuLayout {
 
     public void printMainMenu(Scanner in) {
 
-        System.out.println("""
-                1.NEW GAME
-                2.INFO
-                3.ABOUT
-                4.EXIT""");
-        checkValidInput(in, "[1234]", "Invalid input(1,2,3,4): ");
-        int choice = in.nextInt();
-        switch (choice) {
-            case 1 -> choosePokemon(pokemonChoice, in, myPokemon);
-            case 2 -> MenuLayout.drawFiles("info.txt");
-            case 3 -> MenuLayout.drawFiles("about.txt");
-            case 4 -> MenuLayout.drawFiles("thanks.txt");
+            System.out.println("""
+                    1.NEW GAME
+                    2.INFO
+                    3.ABOUT
+                    4.EXIT""");
+            checkValidInput(in, "[1234]", "Invalid input(1,2,3,4): ");
+            int choice = in.nextInt();
+            chooseMenuOption(in, choice);
+        }
 
+    private void chooseMenuOption(Scanner in, int choice) {
+
+        switch (choice) {
+            case 1 -> {
+                drawFiles("ash.txt");
+                promptEnterKey();
+
+                choosePokemon(pokemonChoice, in, myPokemon);
+                promptEnterKey();
+                printMainMenu(in);
+            }
+            case 2 -> {
+                MenuLayout.drawFiles("info.txt");
+                promptEnterKey();
+                printMainMenu(in);
+            }
+            case 3 -> {
+                MenuLayout.drawFiles("about.txt");
+                promptEnterKey();
+                printMainMenu(in);
+            }
+            case 4 -> MenuLayout.drawFiles("thanks.txt");
         }
     }
 
@@ -52,6 +71,8 @@ public class MenuLayout {
     }
 
     public static void choosePokemon(ArrayList<Pokemon> pokemonChoice, Scanner in, ArrayList<Pokemon> myPokemon) {
+        drawFiles("choice.txt");
+        System.out.println("                       1.Pikachu                                       2.Charmender                                                           3.Squirtle                                            4.Sandshry                                                    5.Ninetales");
         System.out.println("Choose 3 pokemon: ");
         int a = 0, b = 0, c = 0, d = 0, e = 0;
         while (myPokemon.size() < 3) {
@@ -95,6 +116,10 @@ public class MenuLayout {
             return true;
         }
         return false;
+    }
+    public void promptEnterKey(){
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 
 

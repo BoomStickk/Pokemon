@@ -17,6 +17,7 @@ public class Main {
         ArrayList<Pokemon> pokemonChoice = new ArrayList<>();
         ArrayList<Pokemon> myPokemon = new ArrayList<>();
         ArrayList<Pokemon> enemyPokemon=new ArrayList<>();
+        ArrayList<Actions>actions=new ArrayList<>();
         pokemonChoice.add(electric1);
         pokemonChoice.add(fire1);
         pokemonChoice.add(water1);
@@ -27,16 +28,16 @@ public class Main {
         enemyPokemon.add(electric2);
         enemyPokemon.add(rock3);
         enemyPokemon.add(fire3);
+        Actions action=new Actions(actions);
         MenuLayout menu = new MenuLayout(pokemonChoice,myPokemon);
         MenuLayout.drawFiles("pokemon_title.txt");
         System.out.println();
         Scanner in = new Scanner(System.in);
         menu.printMainMenu(in);
 
-        for (Pokemon pokemon : myPokemon) {                    //test
-            System.out.println(pokemon);
-        }
-
+//        for (Pokemon pokemon : myPokemon) {                    //test
+//            System.out.println(pokemon);
+//        }
 
     }
 

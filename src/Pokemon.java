@@ -36,5 +36,7 @@ public abstract class Pokemon {
                 '}';
     }
     public abstract int calculateElementalAttack();
+    public abstract int calculateNormalAttack();
+    public abstract int calculateSpecialAttack();
 
 }

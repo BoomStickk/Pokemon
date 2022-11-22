@@ -24,6 +24,16 @@ public class ElectricPokemon extends Pokemon {
     public int calculateElementalAttack() {
         return 0;
     }
+
+    @Override
+    public int calculateNormalAttack() {
+        return 0;
+    }
+
+    @Override
+    public int calculateSpecialAttack() {
+        return 0;
+    }
 }
 
 
