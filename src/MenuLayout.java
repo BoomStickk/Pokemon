@@ -29,6 +29,7 @@ public class MenuLayout {
     public void printMainMenu(Scanner in) {
         int choice;
         do {
+            drawFiles("pokemon_title.txt");
             System.out.println("""
                     1.NEW GAME
                     2.INFO
@@ -47,7 +48,17 @@ public class MenuLayout {
                 drawFiles("ash.txt");
                 promptEnterKey();
                 choosePokemon(pokemonChoice, in, myPokemon);
+
+
+
+                for (Pokemon pokemon : myPokemon) {                    //test
+                    System.out.println(pokemon);
+                }
+                System.out.println("\n"+"Press enter to continue...");
                 promptEnterKey();
+
+
+
             }
             case 2 -> {
                 MenuLayout.drawFiles("info.txt");

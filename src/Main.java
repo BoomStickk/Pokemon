@@ -30,7 +30,6 @@ public class Main {
         enemyPokemon.add(fire3);
         Actions action=new Actions(actions);
         MenuLayout menu = new MenuLayout(pokemonChoice,myPokemon);
-        MenuLayout.drawFiles("pokemon_title.txt");
         System.out.println();
         Scanner in = new Scanner(System.in);
         menu.printMainMenu(in);
