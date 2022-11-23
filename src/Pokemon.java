@@ -15,7 +15,12 @@ public abstract class Pokemon {
         this.defence=100;
         this.lifePoints=100;
     }
-    Pokemon(String name,String size,String appearance,int attack,int defence,int lifePoints){
+
+    public String getName() {
+        return name;
+    }
+
+    Pokemon(String name, String size, String appearance, int attack, int defence, int lifePoints){
         this.name=name;
         this.size=size;
         this.appearance =appearance;

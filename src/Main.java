@@ -17,7 +17,7 @@ public class Main {
         ArrayList<Pokemon> pokemonChoice = new ArrayList<>();
         ArrayList<Pokemon> myPokemon = new ArrayList<>();
         ArrayList<Pokemon> enemyPokemon=new ArrayList<>();
-        ArrayList<Actions>actions=new ArrayList<>();
+        ArrayList<Game>game=new ArrayList<>();
         pokemonChoice.add(electric1);
         pokemonChoice.add(fire1);
         pokemonChoice.add(water1);
@@ -28,15 +28,14 @@ public class Main {
         enemyPokemon.add(electric2);
         enemyPokemon.add(rock3);
         enemyPokemon.add(fire3);
-        Actions action=new Actions(actions);
+        Game game1=new Game(game,myPokemon);
         MenuLayout menu = new MenuLayout(pokemonChoice,myPokemon);
         System.out.println();
         Scanner in = new Scanner(System.in);
         menu.printMainMenu(in);
 
-//        for (Pokemon pokemon : myPokemon) {                    //test
-//            System.out.println(pokemon);
-//        }
+        game1.startGame(myPokemon);
+
 
     }
 

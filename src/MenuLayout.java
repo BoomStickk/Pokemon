@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class MenuLayout {
     ArrayList<Pokemon> pokemonChoice;
     ArrayList<Pokemon> myPokemon;
+    ArrayList<Game>game;
 
     public MenuLayout(ArrayList<Pokemon> pokemonChoice, ArrayList<Pokemon> myPokemon) {
         this.pokemonChoice = pokemonChoice;
@@ -26,7 +27,7 @@ public class MenuLayout {
         }
     }
 
-    public void printMainMenu(Scanner in) {
+    public int printMainMenu(Scanner in) {
         int choice;
         do {
             drawFiles("pokemon_title.txt");
@@ -39,15 +40,18 @@ public class MenuLayout {
             choice = in.nextInt();
             chooseMenuOption(in, choice);
         } while (choice != 4);
+        return choice;
     }
 
-    private void chooseMenuOption(Scanner in, int choice) {
+    public void chooseMenuOption(Scanner in, int choice) {
 
         switch (choice) {
             case 1 -> {
                 drawFiles("ash.txt");
                 promptEnterKey();
                 choosePokemon(pokemonChoice, in, myPokemon);
+
+
 
 
 
@@ -59,20 +63,21 @@ public class MenuLayout {
 
 
 
+
             }
             case 2 -> {
-                MenuLayout.drawFiles("info.txt");
+                drawFiles("info.txt");
                 promptEnterKey();
             }
             case 3 -> {
-                MenuLayout.drawFiles("about.txt");
+                drawFiles("about.txt");
                 promptEnterKey();
             }
-            case 4 -> MenuLayout.drawFiles("thanks.txt");
+            case 4 -> drawFiles("thanks.txt");
         }
     }
 
-    private static void checkValidInput(Scanner sc, String pattern, String s) {
+    public static void checkValidInput(Scanner sc, String pattern, String s) {
         while (!sc.hasNext(pattern)) {
             System.out.print(s);
             sc.next();
