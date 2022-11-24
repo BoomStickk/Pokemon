@@ -6,11 +6,12 @@ import java.util.Scanner;
 public class MenuLayout {
     ArrayList<Pokemon> pokemonChoice;
     ArrayList<Pokemon> myPokemon;
-    ArrayList<Game>game;
+    Game game;
 
-    public MenuLayout(ArrayList<Pokemon> pokemonChoice, ArrayList<Pokemon> myPokemon) {
+    public MenuLayout(ArrayList<Pokemon> pokemonChoice, ArrayList<Pokemon> myPokemon,Game game) {
         this.pokemonChoice = pokemonChoice;
         this.myPokemon = myPokemon;
+        this.game=game;
     }
 
     public static void drawFiles(String pathname) {
@@ -50,6 +51,8 @@ public class MenuLayout {
                 drawFiles("ash.txt");
                 promptEnterKey();
                 choosePokemon(pokemonChoice, in, myPokemon);
+                game.startGame(myPokemon);
+
 
 
 

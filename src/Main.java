@@ -29,12 +29,10 @@ public class Main {
         enemyPokemon.add(rock3);
         enemyPokemon.add(fire3);
         Game game1=new Game(game,myPokemon);
-        MenuLayout menu = new MenuLayout(pokemonChoice,myPokemon);
+        MenuLayout menu = new MenuLayout(pokemonChoice,myPokemon,game1);
         System.out.println();
         Scanner in = new Scanner(System.in);
         menu.printMainMenu(in);
-
-        game1.startGame(myPokemon);
 
 
     }
