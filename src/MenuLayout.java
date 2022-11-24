@@ -54,19 +54,8 @@ public class MenuLayout {
                 game.startGame(myPokemon);
 
 
-
-
-
-
-                for (Pokemon pokemon : myPokemon) {                    //test
-                    System.out.println(pokemon);
-                }
                 System.out.println("\n"+"Press enter to continue...");
                 promptEnterKey();
-
-
-
-
             }
             case 2 -> {
                 drawFiles("info.txt");
