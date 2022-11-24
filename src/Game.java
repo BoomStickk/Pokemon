@@ -4,9 +4,11 @@ import java.util.Scanner;
 public class Game {
     ArrayList<Game> game;
     ArrayList<Pokemon> myPokemon;
-    Game(ArrayList<Game> game,ArrayList<Pokemon>myPokemon){
+    ArrayList<Pokemon>enemyPokemon;
+    Game(ArrayList<Game> game,ArrayList<Pokemon>myPokemon,ArrayList<Pokemon>enemyPokemon){
         this.game=game;
         this.myPokemon=myPokemon;
+        this.enemyPokemon=enemyPokemon;
     }
     public void normalAttack(){
     }
@@ -48,10 +50,19 @@ public class Game {
         }
     }
     public void startGame(ArrayList<Pokemon>myPokemon){
-        System.out.println("choose your pokemon:");
+        System.out.println("\n"+"Lets the game begin");
+        printOpponent(enemyPokemon);
+        System.out.println("\n"+"Choose your fighter");
         for (int i = 0; i < myPokemon.size(); i++) {
             System.out.println((i+1)+" "+myPokemon.get(i).getName());
         }
+    }
+    public void printOpponent(ArrayList<Pokemon>enemyPokemon){
+        System.out.println("\n"+"Your opponent is "+"\n");
+        for (int i = 0; i < enemyPokemon.size(); i++) {
+            System.out.println(enemyPokemon.get(i));
+        }
+
     }
 
 

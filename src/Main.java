@@ -28,11 +28,15 @@ public class Main {
         enemyPokemon.add(electric2);
         enemyPokemon.add(rock3);
         enemyPokemon.add(fire3);
-        Game game1=new Game(game,myPokemon);
+        Game game1=new Game(game,myPokemon,enemyPokemon);
         MenuLayout menu = new MenuLayout(pokemonChoice,myPokemon,game1);
         System.out.println();
         Scanner in = new Scanner(System.in);
         menu.printMainMenu(in);
+        if(menu.printMainMenu(in)==1){
+            game1.printOpponent(enemyPokemon
+            );
+        }
 
 
 

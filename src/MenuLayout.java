@@ -131,7 +131,7 @@ public class MenuLayout {
     }
     public static void printPokemonInfo(ArrayList<Pokemon>pokemonChoice){
         for (int i = 0; i < pokemonChoice.size(); i++) {
-            System.out.println(pokemonChoice.get(i));
+            System.out.println((i+1)+" "+pokemonChoice.get(i));
         }
     }
 
