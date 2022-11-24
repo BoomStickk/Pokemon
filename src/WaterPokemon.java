@@ -9,15 +9,15 @@ public class WaterPokemon extends Pokemon {
 
     @Override
     public String toString() {
-        return "WaterPokemon{" +
-                ", name='" + name + '\'' +
-                ", size='" + size + '\'' +
-                ", appearance='" + appearance + '\'' +
-                ", attack=" + attack +
-                ", defence=" + defence +
-                ", lifePoints=" + lifePoints +
-                "type='" + type + '\'' +
-                '}';
+        return
+                name  +
+                        " size=" + size +
+                        " appearance=" + appearance +
+                        " attack=" + attack +
+                        " defence=" + defence +
+                        " lifePoints=" + lifePoints +
+                        " type=" + type
+                ;
     }
 
     @Override

@@ -31,14 +31,14 @@ public abstract class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon{" +
-                "name='" + name + '\'' +
+        return
+                "name=" + name + '\'' +
                 ", size='" + size + '\'' +
                 ", appearance='" + appearance + '\'' +
                 ", attack=" + attack +
                 ", defence=" + defence +
-                ", lifePoints=" + lifePoints +
-                '}';
+                ", lifePoints=" + lifePoints
+                ;
     }
     public abstract int calculateElementalAttack();
     public abstract int calculateNormalAttack();

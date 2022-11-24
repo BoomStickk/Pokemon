@@ -78,8 +78,9 @@ public class MenuLayout {
 
     public static void choosePokemon(ArrayList<Pokemon> pokemonChoice, Scanner in, ArrayList<Pokemon> myPokemon) {
         drawFiles("choice.txt");
-        System.out.println("                       1.Pikachu                                       2.Charmender                                                           3.Squirtle                                            4.Sandshry                                                    5.Ninetales");
-        System.out.println("Choose 3 pokemon: ");
+        System.out.println("                       1.Pikachu                                       2.Charmender                                                           3.Squirtle                                            4.Ninetales                                                    5.Sandshry");
+        printPokemonInfo(pokemonChoice);
+        System.out.println("\n"+"Choose 3 pokemon: ");
         int a = 0, b = 0, c = 0, d = 0, e = 0;
         while (myPokemon.size() < 3) {
             System.out.println("pokemon No" + (myPokemon.size() + 1));
@@ -127,6 +128,11 @@ public class MenuLayout {
     public void promptEnterKey() {
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
+    }
+    public static void printPokemonInfo(ArrayList<Pokemon>pokemonChoice){
+        for (int i = 0; i < pokemonChoice.size(); i++) {
+            System.out.println(pokemonChoice.get(i));
+        }
     }
 
 
