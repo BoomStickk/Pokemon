@@ -51,7 +51,9 @@ public class Game {
     }
     public void startGame(ArrayList<Pokemon>myPokemon){
         System.out.println("\n"+"Lets the game begin");
-        printOpponent(enemyPokemon);
+
+        printFirstOpponent(enemyPokemon);
+
         System.out.println("\n"+"Choose your fighter");
         for (int i = 0; i < myPokemon.size(); i++) {
             System.out.println((i+1)+" "+myPokemon.get(i).getName());
@@ -62,8 +64,27 @@ public class Game {
         for (int i = 0; i < enemyPokemon.size(); i++) {
             System.out.println(enemyPokemon.get(i));
         }
-
     }
-
-
+    public void printFirstOpponent(ArrayList<Pokemon>enemyPokemon) {
+        if(enemyPokemon.get(0).lifePoints>0&enemyPokemon.get(1).lifePoints>0&enemyPokemon.get(2).lifePoints>0&enemyPokemon.get(3).lifePoints>0&enemyPokemon.get(4).lifePoints>0){
+            MenuLayout.drawFiles("cubone.txt");
+            System.out.println(enemyPokemon.get(0));
+        }
+        if(enemyPokemon.get(0).lifePoints<=0&enemyPokemon.get(1).lifePoints>0&enemyPokemon.get(2).lifePoints>0&enemyPokemon.get(3).lifePoints>0&enemyPokemon.get(4).lifePoints>0){
+            MenuLayout.drawFiles("kecleon.txt");
+            System.out.println(enemyPokemon.get(1));
+        }
+        if(enemyPokemon.get(0).lifePoints<=0&enemyPokemon.get(1).lifePoints<=0&enemyPokemon.get(2).lifePoints>0&enemyPokemon.get(3).lifePoints>0&enemyPokemon.get(4).lifePoints>0){
+            MenuLayout.drawFiles("cubone.txt");
+            System.out.println(enemyPokemon.get(2));
+        }
+        if(enemyPokemon.get(0).lifePoints<=0&enemyPokemon.get(1).lifePoints<=0&enemyPokemon.get(2).lifePoints<=0&enemyPokemon.get(3).lifePoints>0&enemyPokemon.get(4).lifePoints>0){
+            MenuLayout.drawFiles("raichu.txt");
+            System.out.println(enemyPokemon.get(3));
+        }
+        if(enemyPokemon.get(0).lifePoints<=0&enemyPokemon.get(1).lifePoints<=0&enemyPokemon.get(2).lifePoints<=0&enemyPokemon.get(3).lifePoints<=0&enemyPokemon.get(4).lifePoints>0){
+            MenuLayout.drawFiles("tyranitar.txt");
+            System.out.println(enemyPokemon.get(4));
+        }
+    }
 }

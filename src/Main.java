@@ -33,10 +33,7 @@ public class Main {
         System.out.println();
         Scanner in = new Scanner(System.in);
         menu.printMainMenu(in);
-        if(menu.printMainMenu(in)==1){
-            game1.printOpponent(enemyPokemon
-            );
-        }
+
 
 
 
