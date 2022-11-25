@@ -4,87 +4,125 @@ import java.util.Scanner;
 public class Game {
     ArrayList<Game> game;
     ArrayList<Pokemon> myPokemon;
-    ArrayList<Pokemon>enemyPokemon;
-    Game(ArrayList<Game> game,ArrayList<Pokemon>myPokemon,ArrayList<Pokemon>enemyPokemon){
-        this.game=game;
-        this.myPokemon=myPokemon;
-        this.enemyPokemon=enemyPokemon;
+    ArrayList<Pokemon> enemyPokemon;
+
+    Game(ArrayList<Game> game, ArrayList<Pokemon> myPokemon, ArrayList<Pokemon> enemyPokemon) {
+        this.game = game;
+        this.myPokemon = myPokemon;
+        this.enemyPokemon = enemyPokemon;
     }
-    public void normalAttack(){
+
+    public void normalAttack() {
     }
-    public void elementalAttack(){
+
+    public void elementalAttack() {
     }
-    public void specialAttack(){
+
+    public void specialAttack() {
     }
-    public void healPokemon(){
+
+    public void healPokemon() {
     }
-    public void changePokemon(){
+
+    public void changePokemon() {
     }
-    public void checkPokemon(){
+
+    public void checkPokemon() {
         for (int i = 0; i < myPokemon.size(); i++) {
             System.out.println(myPokemon.get(i));
         }
     }
-    public void printActionMenu(Scanner in){
+
+    public void printActionMenu(Scanner in) {
         int choice;
         System.out.println("""
-                    1.Normal attack
-                    2.Elemental attack
-                    3.Special attack
-                    4.Change pokemon
-                    5.Heal pokemon
-                    6.Pokemon info""");
+                1.Normal attack
+                2.Elemental attack
+                3.Special attack
+                4.Change pokemon
+                5.Heal pokemon
+                6.Pokemon info""");
 
         MenuLayout.checkValidInput(in, "[123456]", "Invalid input(1,2,3,4,5,6): ");
         choice = in.nextInt();
-        chooseAction( choice);
+        chooseAction(choice);
     }
-    public void chooseAction(int choice){
-        switch (choice){
-            case 1->normalAttack();
-            case 2->elementalAttack();
-            case 3->specialAttack();
-            case 4->changePokemon();
-            case 5->healPokemon();
-            case 6->checkPokemon();
+
+    public void chooseAction(int choice) {
+        switch (choice) {
+            case 1 -> normalAttack();
+            case 2 -> elementalAttack();
+            case 3 -> specialAttack();
+            case 4 -> changePokemon();
+            case 5 -> healPokemon();
+            case 6 -> checkPokemon();
         }
     }
-    public void startGame(ArrayList<Pokemon>myPokemon){
-        System.out.println("\n"+"Lets the game begin");
 
-        printFirstOpponent(enemyPokemon);
+    public void startGame(ArrayList<Pokemon> myPokemon) {
+        System.out.println("\n" + "Lets the game begin");
+        printEnemyPokemon();
 
-        System.out.println("\n"+"Choose your fighter");
+        System.out.println("\n" + "Choose your fighter");
         for (int i = 0; i < myPokemon.size(); i++) {
-            System.out.println((i+1)+" "+myPokemon.get(i).getName());
+            System.out.println((i + 1) + " " + myPokemon.get(i).getName());
         }
+        chooseFighter(myPokemon);
+
     }
-    public void printOpponent(ArrayList<Pokemon>enemyPokemon){
-        System.out.println("\n"+"Your opponent is "+"\n");
-        for (int i = 0; i < enemyPokemon.size(); i++) {
-            System.out.println(enemyPokemon.get(i));
+
+    public Pokemon getEnemyPokemon(ArrayList<Pokemon> enemyPokemon) {
+        Pokemon result = null;
+        if (enemyPokemon.get(0).lifePoints > 0 & enemyPokemon.get(1).lifePoints > 0 & enemyPokemon.get(2).lifePoints > 0 & enemyPokemon.get(3).lifePoints > 0 & enemyPokemon.get(4).lifePoints > 0) {
+            result = enemyPokemon.get(0);
         }
+        if (enemyPokemon.get(0).lifePoints <= 0 & enemyPokemon.get(1).lifePoints > 0 & enemyPokemon.get(2).lifePoints > 0 & enemyPokemon.get(3).lifePoints > 0 & enemyPokemon.get(4).lifePoints > 0) {
+            result = enemyPokemon.get(1);
+        }
+        if (enemyPokemon.get(0).lifePoints <= 0 & enemyPokemon.get(1).lifePoints <= 0 & enemyPokemon.get(2).lifePoints > 0 & enemyPokemon.get(3).lifePoints > 0 & enemyPokemon.get(4).lifePoints > 0) {
+            result = enemyPokemon.get(2);
+        }
+        if (enemyPokemon.get(0).lifePoints <= 0 & enemyPokemon.get(1).lifePoints <= 0 & enemyPokemon.get(2).lifePoints <= 0 & enemyPokemon.get(3).lifePoints > 0 & enemyPokemon.get(4).lifePoints > 0) {
+            result = enemyPokemon.get(3);
+        }
+        if (enemyPokemon.get(0).lifePoints <= 0 & enemyPokemon.get(1).lifePoints <= 0 & enemyPokemon.get(2).lifePoints <= 0 & enemyPokemon.get(3).lifePoints <= 0 & enemyPokemon.get(4).lifePoints > 0) {
+            result = enemyPokemon.get(4);
+        }
+        return result;
+
     }
-    public void printFirstOpponent(ArrayList<Pokemon>enemyPokemon) {
-        if(enemyPokemon.get(0).lifePoints>0&enemyPokemon.get(1).lifePoints>0&enemyPokemon.get(2).lifePoints>0&enemyPokemon.get(3).lifePoints>0&enemyPokemon.get(4).lifePoints>0){
+
+    public void printEnemyPokemon() {
+        if (getEnemyPokemon(enemyPokemon) == enemyPokemon.get(0)) {
             MenuLayout.drawFiles("cubone.txt");
             System.out.println(enemyPokemon.get(0));
         }
-        if(enemyPokemon.get(0).lifePoints<=0&enemyPokemon.get(1).lifePoints>0&enemyPokemon.get(2).lifePoints>0&enemyPokemon.get(3).lifePoints>0&enemyPokemon.get(4).lifePoints>0){
+        if (getEnemyPokemon(enemyPokemon) == enemyPokemon.get(1)) {
             MenuLayout.drawFiles("kecleon.txt");
-            System.out.println(enemyPokemon.get(1));
+            System.out.println(enemyPokemon.get(4));
         }
-        if(enemyPokemon.get(0).lifePoints<=0&enemyPokemon.get(1).lifePoints<=0&enemyPokemon.get(2).lifePoints>0&enemyPokemon.get(3).lifePoints>0&enemyPokemon.get(4).lifePoints>0){
-            MenuLayout.drawFiles("cubone.txt");
+        if (getEnemyPokemon(enemyPokemon) == enemyPokemon.get(2)) {
+            MenuLayout.drawFiles("raichu.txt");
             System.out.println(enemyPokemon.get(2));
         }
-        if(enemyPokemon.get(0).lifePoints<=0&enemyPokemon.get(1).lifePoints<=0&enemyPokemon.get(2).lifePoints<=0&enemyPokemon.get(3).lifePoints>0&enemyPokemon.get(4).lifePoints>0){
-            MenuLayout.drawFiles("raichu.txt");
+        if (getEnemyPokemon(enemyPokemon) == enemyPokemon.get(3)) {
+            MenuLayout.drawFiles("tyranitar.txt");
             System.out.println(enemyPokemon.get(3));
         }
-        if(enemyPokemon.get(0).lifePoints<=0&enemyPokemon.get(1).lifePoints<=0&enemyPokemon.get(2).lifePoints<=0&enemyPokemon.get(3).lifePoints<=0&enemyPokemon.get(4).lifePoints>0){
-            MenuLayout.drawFiles("tyranitar.txt");
+        if (getEnemyPokemon(enemyPokemon) == enemyPokemon.get(4)) {
+            MenuLayout.drawFiles("charizard.txt");
             System.out.println(enemyPokemon.get(4));
+        }
+    }
+
+    public void chooseFighter(ArrayList<Pokemon> myPokemon) {
+        Scanner in = new Scanner(System.in);
+        int fighterChoice = in.nextInt();
+        switch (fighterChoice) {
+            case 1 -> System.out.println(myPokemon.get(0) + "vs" + getEnemyPokemon(enemyPokemon));
+            case 2 -> System.out.println(myPokemon.get(1) + "vs" + getEnemyPokemon(enemyPokemon));
+            case 3 -> System.out.println(myPokemon.get(2) + "vs" + getEnemyPokemon(enemyPokemon));
+
         }
     }
 }
