@@ -13,6 +13,7 @@ public class Game {
     }
 
     public void normalAttack() {
+
     }
 
     public void elementalAttack() {
@@ -115,14 +116,28 @@ public class Game {
         }
     }
 
-    public void chooseFighter(ArrayList<Pokemon> myPokemon) {
+    public Pokemon chooseFighter(ArrayList<Pokemon> myPokemon) {
+        Pokemon result = null;
         Scanner in = new Scanner(System.in);
         int fighterChoice = in.nextInt();
         switch (fighterChoice) {
-            case 1 -> System.out.println(myPokemon.get(0) + "vs" + getEnemyPokemon(enemyPokemon));
-            case 2 -> System.out.println(myPokemon.get(1) + "vs" + getEnemyPokemon(enemyPokemon));
-            case 3 -> System.out.println(myPokemon.get(2) + "vs" + getEnemyPokemon(enemyPokemon));
+            case 1 -> result=myPokemon.get(0);
+            case 2 -> result=myPokemon.get(1);
+            case 3 -> result=myPokemon.get(2);
 
+        }return result;
+
+    }
+    public Pokemon changeTurn(ArrayList<Pokemon>enemyPokemon,ArrayList<Pokemon>myPokemon){
+        Pokemon result = getEnemyPokemon(enemyPokemon);
+        while ((getEnemyPokemon(enemyPokemon).lifePoints>0)&(chooseFighter(myPokemon).lifePoints>0)) {
+            if(result.equals(getEnemyPokemon(enemyPokemon))) {
+                result = chooseFighter(myPokemon);
+            }else {
+                result=getEnemyPokemon(enemyPokemon);
+            }
         }
+            return result;
+
     }
 }

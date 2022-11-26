@@ -1,5 +1,5 @@
 public class RockPokemon extends Pokemon{
-    private final String type="ground";
+    private final String type="rock";
 
     RockPokemon(String name, String size, String appearance, int attack, int defence, int lifePoints){
         super(name,size,appearance,attack,defence,lifePoints);
