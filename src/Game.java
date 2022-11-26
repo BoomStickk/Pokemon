@@ -29,8 +29,8 @@ public class Game {
     }
 
     public void checkPokemon() {
-        for (int i = 0; i < myPokemon.size(); i++) {
-            System.out.println(myPokemon.get(i));
+        for (Pokemon pokemon : myPokemon) {
+            System.out.println(pokemon);
         }
     }
 
@@ -44,7 +44,7 @@ public class Game {
                 5.Heal pokemon
                 6.Pokemon info""");
 
-        MenuLayout.checkValidInput(in, "[123456]", "Invalid input(1,2,3,4,5,6): ");
+        MenuLayout.checkValidInput(in, "[123456]" , "Invalid input(1,2,3,4,5,6): ");
         choice = in.nextInt();
         chooseAction(choice);
     }
@@ -74,19 +74,19 @@ public class Game {
 
     public Pokemon getEnemyPokemon(ArrayList<Pokemon> enemyPokemon) {
         Pokemon result = null;
-        if (enemyPokemon.get(0).lifePoints > 0 & enemyPokemon.get(1).lifePoints > 0 & enemyPokemon.get(2).lifePoints > 0 & enemyPokemon.get(3).lifePoints > 0 & enemyPokemon.get(4).lifePoints > 0) {
+        if (enemyPokemon.get(0).getLifePoints() > 0 & enemyPokemon.get(1).getLifePoints() > 0 & enemyPokemon.get(2).getLifePoints() > 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
             result = enemyPokemon.get(0);
         }
-        if (enemyPokemon.get(0).lifePoints <= 0 & enemyPokemon.get(1).lifePoints > 0 & enemyPokemon.get(2).lifePoints > 0 & enemyPokemon.get(3).lifePoints > 0 & enemyPokemon.get(4).lifePoints > 0) {
+        if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() > 0 & enemyPokemon.get(2).getLifePoints() > 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
             result = enemyPokemon.get(1);
         }
-        if (enemyPokemon.get(0).lifePoints <= 0 & enemyPokemon.get(1).lifePoints <= 0 & enemyPokemon.get(2).lifePoints > 0 & enemyPokemon.get(3).lifePoints > 0 & enemyPokemon.get(4).lifePoints > 0) {
+        if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() > 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
             result = enemyPokemon.get(2);
         }
-        if (enemyPokemon.get(0).lifePoints <= 0 & enemyPokemon.get(1).lifePoints <= 0 & enemyPokemon.get(2).lifePoints <= 0 & enemyPokemon.get(3).lifePoints > 0 & enemyPokemon.get(4).lifePoints > 0) {
+        if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() <= 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
             result = enemyPokemon.get(3);
         }
-        if (enemyPokemon.get(0).lifePoints <= 0 & enemyPokemon.get(1).lifePoints <= 0 & enemyPokemon.get(2).lifePoints <= 0 & enemyPokemon.get(3).lifePoints <= 0 & enemyPokemon.get(4).lifePoints > 0) {
+        if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() <= 0 & enemyPokemon.get(3).getLifePoints() <= 0 & enemyPokemon.get(4).getLifePoints() > 0) {
             result = enemyPokemon.get(4);
         }
         return result;
@@ -121,23 +121,50 @@ public class Game {
         Scanner in = new Scanner(System.in);
         int fighterChoice = in.nextInt();
         switch (fighterChoice) {
-            case 1 -> result=myPokemon.get(0);
-            case 2 -> result=myPokemon.get(1);
-            case 3 -> result=myPokemon.get(2);
+            case 1 -> result = myPokemon.get(0);
+            case 2 -> result = myPokemon.get(1);
+            case 3 -> result = myPokemon.get(2);
 
-        }return result;
+        }
+        return result;
 
     }
-    public Pokemon changeTurn(ArrayList<Pokemon>enemyPokemon,ArrayList<Pokemon>myPokemon){
+
+    public Pokemon changeTurn(ArrayList<Pokemon> enemyPokemon, ArrayList<Pokemon> myPokemon) {
         Pokemon result = getEnemyPokemon(enemyPokemon);
-        while ((getEnemyPokemon(enemyPokemon).lifePoints>0)&(chooseFighter(myPokemon).lifePoints>0)) {
-            if(result.equals(getEnemyPokemon(enemyPokemon))) {
+        while ((getEnemyPokemon(enemyPokemon).getLifePoints() > 0) & (chooseFighter(myPokemon).getLifePoints() > 0)) {
+            if (result.equals(getEnemyPokemon(enemyPokemon))) {
                 result = chooseFighter(myPokemon);
-            }else {
-                result=getEnemyPokemon(enemyPokemon);
+            } else {
+                result = getEnemyPokemon(enemyPokemon);
             }
         }
-            return result;
+        return result;
 
     }
+
+    public void fightBattle() {
+
+    }
+
+    public int getEnemyDamage() {
+
+        return getEnemyPokemon(enemyPokemon).getAttack() - chooseFighter(myPokemon).getDefence();
+    }
+
+    public boolean checkElementalDependency(ArrayList<Pokemon> myPokemon, ArrayList<Pokemon> enemyPokemon) {
+        boolean result=false;
+        if ((chooseFighter(myPokemon).getType().equals("electric") || getEnemyPokemon(enemyPokemon).getType().equals("electric")) & (chooseFighter(myPokemon).getType().equals("water") || getEnemyPokemon(enemyPokemon).getType().equals("water"))) {
+            result= true;
+        } else if
+        ((chooseFighter(myPokemon).getType().equals("water") || getEnemyPokemon(enemyPokemon).getType().equals("water")) & (chooseFighter(myPokemon).getType().equals("fire") || getEnemyPokemon(enemyPokemon).getType().equals("fire"))) {
+            result= true;
+        } else if
+        ((chooseFighter(myPokemon).getType().equals("fire") || getEnemyPokemon(enemyPokemon).getType().equals("fire")) & (chooseFighter(myPokemon).getType().equals("rock") || getEnemyPokemon(enemyPokemon).getType().equals("rock"))) {
+            result= true;
+        } else if ((chooseFighter(myPokemon).getType().equals("rock") || getEnemyPokemon(enemyPokemon).getType().equals("rock")) & (chooseFighter(myPokemon).getType().equals("electric") || getEnemyPokemon(enemyPokemon).getType().equals("electric")))
+            result= true;
+        return result;
+    }
+
 }
