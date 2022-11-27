@@ -5,7 +5,7 @@ public class Game {
     ArrayList<Game> game;
     ArrayList<Pokemon> myPokemon;
     ArrayList<Pokemon> enemyPokemon;
-    private static int counter=1;
+    private static int counter=1;          //hmmmmm
     private int counterNum;
 
 
@@ -158,20 +158,23 @@ public class Game {
     }
 
 
+    public static void setCounter(int counter) {
+        Game.counter = counter;
+    }
 
     public void fightBattle(int choice) {
-        int turnTaken=1;
+
 
 
         while (((myPokemon.get(0).getLifePoints() > 0) || (myPokemon.get(1).getLifePoints() > 0) || (myPokemon.get(2).getLifePoints() > 0)) && ((enemyPokemon.get(0).getLifePoints() > 0) || (enemyPokemon.get(1).getLifePoints() > 0) || (enemyPokemon.get(2).getLifePoints() > 0) || (enemyPokemon.get(3).getLifePoints() > 0) || (enemyPokemon.get(4).getLifePoints() > 0)))
         {
-            if (turnTaken/2!=0) {
+            if (counter/2!=0) {
                 System.out.println(getEnemyDamage(choice));
             } else  {
 
                 printActionMenu();
             }
-            turnTaken++;
+            setCounter(counter++);
             changeTurn(enemyPokemon,myPokemon,choice);
 
         }
@@ -179,7 +182,7 @@ public class Game {
     }
 
     public int getEnemyDamage(int choice) {
-        System.out.println("the damage");
+        System.out.println("the enemy damage");
         return getEnemyPokemon(enemyPokemon).getAttack() - getMyPokemon(myPokemon, choice).getDefence();
     }
 
