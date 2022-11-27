@@ -55,9 +55,12 @@ public class MenuLayout {
                 Scanner in2 = new Scanner(System.in);
                 int fighterChoice = in2.nextInt();
                 game.chooseMyPokemon(myPokemon,fighterChoice);
+                game.fightBattle(choice);
 
 
-                System.out.println(game.getEnemyDamage(choice));
+
+
+                //System.out.println(game.getEnemyDamage(choice));
 
 
                 System.out.println("\n"+"Press enter to continue...");
