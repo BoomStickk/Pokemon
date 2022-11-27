@@ -3,7 +3,7 @@ public  class Pokemon {
     protected String name;
 
     private String size;
-    private String appearance;
+    private final String appearance;
     private int attack;
     private int defence;
     private int lifePoints;

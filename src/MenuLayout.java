@@ -8,6 +8,7 @@ public class MenuLayout {
     ArrayList<Pokemon> myPokemon;
     Game game;
 
+
     public MenuLayout(ArrayList<Pokemon> pokemonChoice, ArrayList<Pokemon> myPokemon,Game game) {
         this.pokemonChoice = pokemonChoice;
         this.myPokemon = myPokemon;
@@ -28,7 +29,7 @@ public class MenuLayout {
         }
     }
 
-    public int printMainMenu(Scanner in) {
+    public void printMainMenu(Scanner in) {
         int choice;
         do {
             drawFiles("pokemon_title.txt");
@@ -41,7 +42,6 @@ public class MenuLayout {
             choice = in.nextInt();
             chooseMenuOption(in, choice);
         } while (choice != 4);
-        return choice;
     }
 
     public void chooseMenuOption(Scanner in, int choice) {
@@ -52,6 +52,12 @@ public class MenuLayout {
                 promptEnterKey();
                 choosePokemon(pokemonChoice, in, myPokemon);
                 game.startGame(myPokemon);
+                Scanner in2 = new Scanner(System.in);
+                int fighterChoice = in2.nextInt();
+                game.chooseMyPokemon(myPokemon,fighterChoice);
+
+
+                System.out.println(game.getEnemyDamage(choice));
 
 
                 System.out.println("\n"+"Press enter to continue...");
