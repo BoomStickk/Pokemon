@@ -55,6 +55,9 @@ public class MenuLayout {
                 Scanner in2 = new Scanner(System.in);
                 int fighterChoice = in2.nextInt();
                 game.chooseMyPokemon(myPokemon,fighterChoice);
+
+                System.out.println(game.getEnemyDamage(fighterChoice));
+
                 game.fightBattle(choice);
 
 
