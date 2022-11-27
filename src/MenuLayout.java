@@ -9,10 +9,10 @@ public class MenuLayout {
     Game game;
 
 
-    public MenuLayout(ArrayList<Pokemon> pokemonChoice, ArrayList<Pokemon> myPokemon,Game game) {
+    public MenuLayout(ArrayList<Pokemon> pokemonChoice, ArrayList<Pokemon> myPokemon, Game game) {
         this.pokemonChoice = pokemonChoice;
         this.myPokemon = myPokemon;
-        this.game=game;
+        this.game = game;
     }
 
     public static void drawFiles(String pathname) {
@@ -54,19 +54,9 @@ public class MenuLayout {
                 game.startGame(myPokemon);
                 Scanner in2 = new Scanner(System.in);
                 int fighterChoice = in2.nextInt();
-                game.chooseMyPokemon(myPokemon,fighterChoice);
-
-                System.out.println(game.getEnemyDamage(fighterChoice));
-
+                game.chooseMyPokemon(myPokemon, fighterChoice);
                 game.fightBattle(choice);
-
-
-
-
-                //System.out.println(game.getEnemyDamage(choice));
-
-
-                System.out.println("\n"+"Press enter to continue...");
+                System.out.println("\n" + "Press enter to continue...");
                 promptEnterKey();
             }
             case 2 -> {
@@ -92,7 +82,7 @@ public class MenuLayout {
         drawFiles("choice.txt");
         System.out.println("                       1.Pikachu                                       2.Charmender                                                           3.Squirtle                                            4.Ninetales                                                    5.Sandshry");
         printPokemonInfo(pokemonChoice);
-        System.out.println("\n"+"Choose 3 pokemon: ");
+        System.out.println("\n" + "Choose 3 pokemon: ");
         int a = 0, b = 0, c = 0, d = 0, e = 0;
         while (myPokemon.size() < 3) {
             System.out.println("pokemon No" + (myPokemon.size() + 1));
@@ -141,12 +131,11 @@ public class MenuLayout {
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }
-    public static void printPokemonInfo(ArrayList<Pokemon>pokemonChoice){
+
+    public static void printPokemonInfo(ArrayList<Pokemon> pokemonChoice) {
         for (int i = 0; i < pokemonChoice.size(); i++) {
-            System.out.println((i+1)+" "+pokemonChoice.get(i));
+            System.out.println((i + 1) + " " + pokemonChoice.get(i));
         }
     }
-
-
 }
 

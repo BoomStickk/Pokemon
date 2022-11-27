@@ -5,24 +5,15 @@ public class Game {
     ArrayList<Game> game;
     ArrayList<Pokemon> myPokemon;
     ArrayList<Pokemon> enemyPokemon;
-    private static int counter=1;          //hmmmmm
-    private int counterNum;
-
-
 
     Game(ArrayList<Game> game, ArrayList<Pokemon> myPokemon, ArrayList<Pokemon> enemyPokemon) {
         this.game = game;
         this.myPokemon = myPokemon;
         this.enemyPokemon = enemyPokemon;
     }
-
-
     public int normalAttack(int choice) {
         System.out.println("my damage");
-        return getMyPokemon(myPokemon,choice).getAttack()-getEnemyPokemon(enemyPokemon).getDefence();
-
-
-
+        return getMyPokemon(myPokemon, choice).getAttack() - getEnemyPokemon(enemyPokemon).getDefence();
     }
 
     public void elementalAttack() {
@@ -42,7 +33,6 @@ public class Game {
             System.out.println(pokemon);
         }
     }
-
     public void printActionMenu() {
         int choice;
         System.out.println("""
@@ -53,13 +43,10 @@ public class Game {
                 5.Heal pokemon
                 6.Pokemon info""");
         Scanner in = new Scanner(System.in);
-
-
         MenuLayout.checkValidInput(in, "[123456]", "Invalid input(1,2,3,4,5,6): ");
         choice = in.nextInt();
         chooseAction(choice);
     }
-
     public void chooseAction(int choice) {
         switch (choice) {
             case 1 -> System.out.println(normalAttack(choice));
@@ -70,7 +57,6 @@ public class Game {
             case 6 -> checkPokemon();
         }
     }
-
     public void startGame(ArrayList<Pokemon> myPokemon) {
         System.out.println("\n" + "Lets the game begin");
         printEnemyPokemon();
@@ -79,7 +65,6 @@ public class Game {
         for (int i = 0; i < myPokemon.size(); i++) {
             System.out.println((i + 1) + " " + myPokemon.get(i).getName());
         }
-
     }
 
     public Pokemon getEnemyPokemon(ArrayList<Pokemon> enemyPokemon) {
@@ -100,9 +85,7 @@ public class Game {
             result = enemyPokemon.get(4);
         }
         return result;
-
     }
-
     public void printEnemyPokemon() {
         if (getEnemyPokemon(enemyPokemon) == enemyPokemon.get(0)) {
             MenuLayout.drawFiles("cubone.txt");
@@ -125,7 +108,6 @@ public class Game {
             System.out.println(enemyPokemon.get(4));
         }
     }
-
     public Pokemon chooseMyPokemon(ArrayList<Pokemon> myPokemon, int choice) {
         Pokemon result = null;
 
@@ -133,56 +115,31 @@ public class Game {
             case 1 -> result = myPokemon.get(0);
             case 2 -> result = myPokemon.get(1);
             case 3 -> result = myPokemon.get(2);
-
         }
         return result;
-
     }
-
-
     public Pokemon getMyPokemon(ArrayList<Pokemon> myPokemon, int choice) {
         return chooseMyPokemon(myPokemon, choice);
     }
 
     public Pokemon changeTurn(ArrayList<Pokemon> enemyPokemon, ArrayList<Pokemon> myPokemon, int choice) {
         Pokemon turn = getEnemyPokemon(enemyPokemon);
-
-//        while ((getEnemyPokemon(enemyPokemon).getLifePoints() > 0) & (getMyPokemon(myPokemon, choice).getLifePoints() > 0)) {
-            if (turn.equals(getEnemyPokemon(enemyPokemon))) {
-                turn = getMyPokemon(myPokemon, choice);
-            } else {
-                turn = getEnemyPokemon(enemyPokemon);
-            }
-//        }
+        if (turn.equals(getEnemyPokemon(enemyPokemon))) {
+            turn = getMyPokemon(myPokemon, choice);
+        } else {
+            turn = getEnemyPokemon(enemyPokemon);
+        }
         return turn;
     }
-
-
-    public static void setCounter(int counter) {
-        Game.counter = counter;
-    }
-
     public void fightBattle(int choice) {
-
-
-
-        while (((myPokemon.get(0).getLifePoints() > 0) || (myPokemon.get(1).getLifePoints() > 0) || (myPokemon.get(2).getLifePoints() > 0)) && ((enemyPokemon.get(0).getLifePoints() > 0) || (enemyPokemon.get(1).getLifePoints() > 0) || (enemyPokemon.get(2).getLifePoints() > 0) || (enemyPokemon.get(3).getLifePoints() > 0) || (enemyPokemon.get(4).getLifePoints() > 0)))
-        {
-            if (counter/2!=0) {
-                System.out.println(getEnemyDamage(choice));
-            } else  {
-
-                printActionMenu();
-            }
-            setCounter(counter++);
-            changeTurn(enemyPokemon,myPokemon,choice);
-
+        while (((myPokemon.get(0).getLifePoints() > 0) || (myPokemon.get(1).getLifePoints() > 0) || (myPokemon.get(2).getLifePoints() > 0)) && ((enemyPokemon.get(0).getLifePoints() > 0) || (enemyPokemon.get(1).getLifePoints() > 0) || (enemyPokemon.get(2).getLifePoints() > 0) || (enemyPokemon.get(3).getLifePoints() > 0) || (enemyPokemon.get(4).getLifePoints() > 0))) {
+            System.out.println("The enemy damage" + "\n" + getEnemyDamage(choice));
+            printActionMenu();
         }
-
     }
 
     public int getEnemyDamage(int choice) {
-        System.out.println("the enemy damage");
+
         return getEnemyPokemon(enemyPokemon).getAttack() - getMyPokemon(myPokemon, choice).getDefence();
     }
 
