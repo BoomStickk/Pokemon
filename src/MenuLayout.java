@@ -57,9 +57,6 @@ public class MenuLayout {
                 game.chooseMyPokemon(myPokemon,fighterChoice);
                 game.fightBattle(choice);
 
-
-
-
                 //System.out.println(game.getEnemyDamage(choice));
 
 
