@@ -59,24 +59,23 @@ public class MenuLayout {
 
                 //System.out.println(game.getEnemyDamage(choice));
 
-
                 System.out.println("\n"+"Press enter to continue...");
                 promptEnterKey();
             }
             case 2 -> {
-
-//                drawFiles("info.txt");
                 System.out.println("The Pokemon you're fighting against attacks first. Each Pokemon has their own weakness and strength. \n " +
                         "A Water Pokemon is stronger in a battle against a Fire Pokemon. If a Fire Pokemon attacks a Water Pokemon, the Fire Pokemon's attack will be less damaging. \n" +
                         "A Fire Pokemon does more damage to a Rock Pokemon, and a Rock Pokemon does more damage to an Electric Pokemon. A Water Pokemon is weaker than an Electric Pokemon. \n" +
                         "Furthermore, each Pokemon specializes in attack or defense. If it specializes in attack, it does more damage, and if it specializes in defense, it can take more damage from the opponent. \n" +
                         "Press Enter to go back to the Menu.");
-
                 promptEnterKey();
             }
 
             case 3 -> {
-                drawFiles("about.txt");
+                System.out.println("Trayan a.k.a. the Pokemon master guru pro lvl 38479234 and Presiyana who has never played a game in her life created this masterpiece of a game in 2022 with cold sweat and blood \n" +
+                        "so that YOU can become the best Pokemon trainer that ever existed. It took them nearly a decade to come up with the plot, the strategy and probably a couple of sleepless nights to write the code. \n" +
+                        "Nevertheless, this game is a masterpiece, and they hope you enjoy it! \n" +
+                        "Press Enter to go back to the Menu.");
                 promptEnterKey();
             }
             case 4 -> drawFiles("thanks.txt");
