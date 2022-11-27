@@ -35,7 +35,7 @@ public class MenuLayout {
             drawFiles("pokemon_title.txt");
             System.out.println("""
                     1.NEW GAME
-                    2.INFO
+                    2.GAME MECHANICS
                     3.ABOUT
                     4.EXIT""");
             checkValidInput(in, "[1234]", "Invalid input(1,2,3,4): ");
@@ -57,9 +57,6 @@ public class MenuLayout {
                 game.chooseMyPokemon(myPokemon,fighterChoice);
                 game.fightBattle(choice);
 
-
-
-
                 //System.out.println(game.getEnemyDamage(choice));
 
 
@@ -67,9 +64,17 @@ public class MenuLayout {
                 promptEnterKey();
             }
             case 2 -> {
-                drawFiles("info.txt");
+
+//                drawFiles("info.txt");
+                System.out.println("The Pokemon you're fighting against attacks first. Each Pokemon has their own weakness and strength. \n " +
+                        "A Water Pokemon is stronger in a battle against a Fire Pokemon. If a Fire Pokemon attacks a Water Pokemon, the Fire Pokemon's attack will be less damaging. \n" +
+                        "A Fire Pokemon does more damage to a Rock Pokemon, and a Rock Pokemon does more damage to an Electric Pokemon. A Water Pokemon is weaker than an Electric Pokemon. \n" +
+                        "Furthermore, each Pokemon specializes in attack or defense. If it specializes in attack, it does more damage, and if it specializes in defense, it can take more damage from the opponent. \n" +
+                        "Press Enter to go back to the Menu.");
+
                 promptEnterKey();
             }
+
             case 3 -> {
                 drawFiles("about.txt");
                 promptEnterKey();
