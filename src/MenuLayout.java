@@ -29,7 +29,8 @@ public class MenuLayout {
         }
     }
 
-    public void printMainMenu(Scanner in) {
+    public void printMainMenu() {
+
         int choice;
         do {
             drawFiles("pokemon_title.txt");
@@ -38,19 +39,20 @@ public class MenuLayout {
                     2.INFO
                     3.ABOUT
                     4.EXIT""");
+            Scanner in = new Scanner(System.in);
             checkValidInput(in, "[1234]", "Invalid input(1,2,3,4): ");
             choice = in.nextInt();
-            chooseMenuOption(in, choice);
+            chooseMenuOption(choice);
         } while (choice != 4);
     }
 
-    public void chooseMenuOption(Scanner in, int choice) {
+    public void chooseMenuOption( int choice) {
 
         switch (choice) {
             case 1 -> {
                 drawFiles("ash.txt");
                 promptEnterKey();
-                choosePokemon(pokemonChoice, in, myPokemon);
+                choosePokemon(pokemonChoice,  myPokemon);
                 game.startGame(myPokemon);
                 Scanner in2 = new Scanner(System.in);
                 int fighterChoice = in2.nextInt();
@@ -78,10 +80,11 @@ public class MenuLayout {
         }
     }
 
-    public static void choosePokemon(ArrayList<Pokemon> pokemonChoice, Scanner in, ArrayList<Pokemon> myPokemon) {
+    public static void choosePokemon(ArrayList<Pokemon> pokemonChoice, ArrayList<Pokemon> myPokemon) {
         drawFiles("choice.txt");
         System.out.println("                       1.Pikachu                                       2.Charmender                                                           3.Squirtle                                            4.Ninetales                                                    5.Sandshry");
         printPokemonInfo(pokemonChoice);
+        Scanner in=new Scanner(System.in);
         System.out.println("\n" + "Choose 3 pokemon: ");
         int a = 0, b = 0, c = 0, d = 0, e = 0;
         while (myPokemon.size() < 3) {
