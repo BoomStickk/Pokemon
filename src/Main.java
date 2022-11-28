@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        Pokemon fire1 = new Pokemon("Charmender", "small", "lizard", 100, 20, 500,"fire");
+        Pokemon fire1 = new Pokemon("Charmender", "small", "lizard", 100, 20, 5000,"fire");
         Pokemon fire2 = new Pokemon("Ninetails", "medium", "fox", 100, 20, 500,"fire");
         Pokemon fire3 = new Pokemon("Charizard", "big", "dragon", 100, 20, 500,"fire");
         Pokemon water1=new Pokemon("Squirtle","small","turtle",100,20,500,"water");
@@ -12,7 +11,7 @@ public class Main {
         Pokemon electric1=new Pokemon("Pikachu","small","mouse",500,20,4000,"electric");
         Pokemon electric2=new Pokemon("Raichu","medium","mouse",100,20,500,"electric");
         Pokemon rock1=new Pokemon("Sandshry","medium","armadillo",100,20,500,"rock");
-        Pokemon rock2=new Pokemon("Cubone","small","kangaroo",100,20,500,"rock");
+        Pokemon rock2=new Pokemon("Cubone","small","kangaroo",1000,75,500,"rock");
         Pokemon rock3=new Pokemon("Tyranitar","big","dinosaur",100,20,500,"rock");
         ArrayList<Pokemon> pokemonChoice = new ArrayList<>();
         ArrayList<Pokemon> myPokemon = new ArrayList<>();

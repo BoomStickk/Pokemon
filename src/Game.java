@@ -7,7 +7,7 @@ public class Game {
     ArrayList<Pokemon> enemyPokemon;
     int crystalCounter = 0;
     Pokemon myCurrentFighter = null;
-    Pokemon opponentCurrentFighter=null;
+    Pokemon opponentCurrentFighter = null;
     int getMyDamage = 0;
 
     public int getCrystalCounter() {
@@ -38,15 +38,16 @@ public class Game {
 
 
     public void healPokemon() {
-        System.out.println("your crystal quantity is "+crystalCounter);
-        if ((crystalCounter > 0) && ((myPokemon.get(0).getLifePoints() < 0) ||( myPokemon.get(1).getLifePoints() < 0) ||( myPokemon.get(2).getLifePoints() < 0))) {
+        System.out.println("your crystal quantity is " + crystalCounter);
+        if ((crystalCounter > 0) && ((myPokemon.get(0).getLifePoints() < 0) || (myPokemon.get(1).getLifePoints() < 0) || (myPokemon.get(2).getLifePoints() < 0))) {
             System.out.println("what pokemon do you wish to heal");
 
             for (int i = 0; i < myPokemon.size(); i++) {
                 if (myPokemon.get(i).getLifePoints() <= 0) {
-                    System.out.println((i + 1) +" "+ myPokemon.get(i).getName());
+                    System.out.println((i + 1) + " " + myPokemon.get(i).getName());
                 }
-            }Scanner in = new Scanner(System.in);
+            }
+            Scanner in = new Scanner(System.in);
             MenuLayout.checkValidInput(in, "[123]", "Invalid input(1,2,3): ");
             int choice = in.nextInt();
             switch (choice) {
@@ -54,9 +55,10 @@ public class Game {
                 case 2 -> myPokemon.get(1).setLifePoints(500);
                 case 3 -> myPokemon.get(2).setLifePoints(500);
             }
-            System.out.println("your pokemon has been healed\npress enter to continue");
+            setCrystalCounter(getCrystalCounter() - 1);
+            System.out.println("your pokemon has been healed, you used up 1 crystal, now you have" + getCrystalCounter() + "\npress enter to continue");
             MenuLayout.promptEnterKey();
-        }else {
+        } else {
             System.out.println("you can't heal any pokemon\npress enter to continue ");
             MenuLayout.promptEnterKey();
         }
@@ -81,35 +83,27 @@ public class Game {
         }
     }
 
-    public void checkPokemon() {
-        for (Pokemon pokemon : myPokemon) {
-            System.out.println(pokemon);
-        }
-    }
-
     public void printActionMenu() {
         System.out.println("""
                 1.Normal attack
                 2.Elemental attack
                 3.Change pokemon
-                4.Heal pokemon
-                5.Pokemon info""");
+                4.Heal pokemon""");
 
         chooseAction();
     }
 
     public void chooseAction() {
         Scanner in = new Scanner(System.in);
-        MenuLayout.checkValidInput(in, "[12345]", "Invalid input(1,2,3,4,5): ");
+        MenuLayout.checkValidInput(in, "[1234]", "Invalid input(1,2,3,4): ");
         int choice = in.nextInt();
         switch (choice) {
             case 1 -> normalAttack();
             case 2 -> elementalAttack();
             case 3 -> changePokemon();
             case 4 -> healPokemon();
-            case 5 -> checkPokemon();
         }
-        checkMyDamage(choice);
+        checkMyAction(choice);
     }
 
     public int getGetMyDamage() {
@@ -120,29 +114,29 @@ public class Game {
         this.getMyDamage = getMyDamage;
     }
 
-    public void checkMyDamage(int choice) {
-        int damage = 0;
+    public void checkMyAction(int choice) {
         if (choice == 1) {
 
-            damage = normalAttack();
+            setGetMyDamage(normalAttack());
 
         } else if (choice == 2) {
 
-            damage = elementalAttack();
+            setGetMyDamage(elementalAttack());
 
+        } else if(choice==3||choice==4){
+            fightBattle();
+        }else {
+            actMyTurn();
         }
-        setGetMyDamage(damage);
+
     }
 
     public void startGame(ArrayList<Pokemon> myPokemon) {
         System.out.println("\n" + "Lets the game begin, your first enemy is... ");
-
+        setOpponentCurrentFighter(enemyPokemon.get(0));
         System.out.println("press enter to continue");
-
         MenuLayout.promptEnterKey();
         printEnemyPokemon();
-
-        getCrystals();
         System.out.println("\n" + "Choose your fighter");
         for (int i = 0; i < myPokemon.size(); i++) {
             System.out.println((i + 1) + " " + myPokemon.get(i).getName());
@@ -164,30 +158,35 @@ public class Game {
             setOpponentCurrentFighter(enemyPokemon.get(3));
         } else if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() <= 0 & enemyPokemon.get(3).getLifePoints() <= 0 & enemyPokemon.get(4).getLifePoints() > 0) {
             setOpponentCurrentFighter(enemyPokemon.get(4));
-        } return getOpponentCurrentFighter();
+        }
+        return getOpponentCurrentFighter();
 
     }
 
     public void printEnemyPokemon() {
         if (getOpponentCurrentFighter() == enemyPokemon.get(0)) {
             MenuLayout.drawFiles("cubone.txt");
-            System.out.println(enemyPokemon.get(0));
+            System.out.println(enemyPokemon.get(0)+"\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(1)) {
             MenuLayout.drawFiles("kecleon.txt");
-            System.out.println(enemyPokemon.get(4));
+            System.out.println("Get ready for the second battle");
+            System.out.println(enemyPokemon.get(1)+"\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(2)) {
             MenuLayout.drawFiles("raichu.txt");
-            System.out.println(enemyPokemon.get(2));
+            System.out.println("The third won't be as easy");
+            System.out.println(enemyPokemon.get(2)+"\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(3)) {
             MenuLayout.drawFiles("tyranitar.txt");
-            System.out.println(enemyPokemon.get(3));
+            System.out.println("You are doing pretty good, onto the forth");
+            System.out.println(enemyPokemon.get(3)+"\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(4)) {
             MenuLayout.drawFiles("charizard.txt");
-            System.out.println(enemyPokemon.get(4));
+            System.out.println("You have no chance, you will be done in this final battle");
+            System.out.println(enemyPokemon.get(4)+"\n");
         }
     }
 
@@ -234,79 +233,67 @@ public class Game {
     }
 
     public void fightBattle() {
-        setOpponentCurrentFighter(enemyPokemon.get(0));
         while (true) {
 
+            if (actOpponentTurn()) break;
+
+
+            if (actMyTurn()) break;
+        }
+    }
+
+    private boolean actMyTurn() {
+        if (myCurrentFighter.getLifePoints() > 0) {
+            printActionMenu();
+            System.out.println("The damage dealt by " + getMyCurrentFighter().getName() + " is " + getGetMyDamage());
+            getOpponentCurrentFighter().setLifePoints(getOpponentCurrentFighter().getLifePoints() - getGetMyDamage());
             if (getOpponentCurrentFighter().getLifePoints() > 0) {
-                System.out.println(getOpponentCurrentFighter().getName() + "'s damage is " + getEnemyDamage());
-                getMyCurrentFighter().setLifePoints(getMyCurrentFighter().getLifePoints() - getEnemyDamage());
-                if(getMyCurrentFighter().getLifePoints()>0) {
-                    System.out.println(getMyCurrentFighter().getName() + "'s life points are " + getMyCurrentFighter().getLifePoints());
-                }else {
-                    System.out.println(getMyCurrentFighter().getName() + "is knocked out ");
-                    changeTurn();
-                }
+
+                System.out.println(getOpponentCurrentFighter().getName() + "'s life points are now down to " + getOpponentCurrentFighter().getLifePoints() + "\n");
             } else {
-                System.out.println("Game over, you win");break;
+                System.out.println(getOpponentCurrentFighter().getName() + " is knocked out \nYou win 1 crystal");
+                changeTurn();
+                setCrystalCounter(getCrystalCounter() + 1);
+                System.out.println("you currently have " + crystalCounter + "\n");
+                setOpponentCurrentFighter(getEnemyPokemon(enemyPokemon));
+                printEnemyPokemon();
             }
 
-
-            if (myCurrentFighter.getLifePoints() > 0) {
-                printActionMenu();
-                System.out.println(getMyCurrentFighter().getName() + "'s damage is " + getGetMyDamage());
-                getOpponentCurrentFighter().setLifePoints(getOpponentCurrentFighter().getLifePoints() - getGetMyDamage());
-                if(getOpponentCurrentFighter().getLifePoints()>0) {
-
-                    System.out.println(getOpponentCurrentFighter().getName() + "'s health is " + getOpponentCurrentFighter().getLifePoints());
-                }else {
-                    System.out.println(getOpponentCurrentFighter().getName()+" is knocked out");
-                    changeTurn();
-                    setCrystalCounter(getCrystalCounter()+1);
-                    setOpponentCurrentFighter(getEnemyPokemon(enemyPokemon));
+        } else {
+            int deathCounter = 0;
+            for (int i = 0; i < myPokemon.size(); i++) {
+                if (myPokemon.get(i).getLifePoints() <= 0) {
+                    deathCounter++;
                 }
-
-            } else {
+            }
+            if (deathCounter < 3) {
                 changePokemon();
+            } else {
+                System.out.println("Game over,you loose");
+                return true;
             }
         }
+        return false;
     }
 
-    private void getCrystals() {
-        int deathCounter = 0;
-
-        for (Pokemon pokemon : enemyPokemon) {
-            if (pokemon.getLifePoints() <= 0) {
-                deathCounter++;
+    private boolean actOpponentTurn() {
+        if (getOpponentCurrentFighter().getLifePoints() > 0) {
+            System.out.println("The damage dealt by " + getOpponentCurrentFighter().getName() + " is " + getEnemyDamage());
+            getMyCurrentFighter().setLifePoints(getMyCurrentFighter().getLifePoints() - getEnemyDamage());
+            if (getMyCurrentFighter().getLifePoints() > 0) {
+                System.out.println(getMyCurrentFighter().getName() + "'s life points are now down to " + getMyCurrentFighter().getLifePoints() + "\n");
+            } else {
+                System.out.println(getMyCurrentFighter().getName() + "is knocked out \n");
+                changeTurn();
             }
+        } else {
+            System.out.println("Game over, you win");
+            return true;
         }
-        switch (deathCounter) {
-
-            case 1 -> {
-                System.out.println("second battle");
-                printEnemyPokemon();
-                setCrystalCounter(getCrystalCounter()+1);
-
-            }
-            case 2 -> {
-                System.out.println("third battle");
-                printEnemyPokemon();
-                setCrystalCounter(getCrystalCounter()+1);
-
-            }
-            case 3 -> {
-                System.out.println("forth battle");
-                printEnemyPokemon();
-                setCrystalCounter(getCrystalCounter()+1);
-
-            }
-            case 4 -> {
-                System.out.println("final battle");
-                printEnemyPokemon();
-                setCrystalCounter(getCrystalCounter()+1);
-
-            }
-        }
+        return false;
     }
+
+
 
     public int getEnemyDamage() {
         if (checkElementalDependency()) {
