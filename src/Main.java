@@ -31,7 +31,7 @@ public class Main {
         Game game1=new Game(game,myPokemon,enemyPokemon);
         MenuLayout menu = new MenuLayout(pokemonChoice,myPokemon,game1);
         System.out.println();
-        //
+
         menu.printMainMenu();
 
 

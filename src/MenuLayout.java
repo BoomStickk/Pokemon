@@ -54,9 +54,9 @@ public class MenuLayout {
                 promptEnterKey();
                 choosePokemon(pokemonChoice,  myPokemon);
                 game.startGame(myPokemon);
-                Scanner in2 = new Scanner(System.in);
-                int fighterChoice = in2.nextInt();
-                game.chooseMyPokemon(myPokemon, fighterChoice);
+                Scanner in = new Scanner(System.in);
+                choice=in.nextInt();
+                game.chooseMyPokemon(myPokemon, choice);
                 game.fightBattle(choice);
                 System.out.println("\n" + "Press enter to continue...");
                 promptEnterKey();

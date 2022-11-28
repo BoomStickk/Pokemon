@@ -28,12 +28,14 @@ public class Game {
     public void healPokemon() {
     }
 
-    public void changePokemon(int choice) {
+    public void changePokemon() {
         System.out.println("change pokemon");
         System.out.println("\n" + "Choose your fighter");
         for (int i = 0; i < myPokemon.size(); i++) {
             System.out.println((i + 1) + " " + myPokemon.get(i).getName());
         }
+        Scanner in=new Scanner(System.in);
+        int choice=in.nextInt();
         chooseMyPokemon(myPokemon, choice);
     }
 
@@ -59,21 +61,21 @@ public class Game {
 
     public void chooseAction(int choice) {
         switch (choice) {
-            case 1 -> System.out.println(normalAttack(choice));
-            case 2 -> System.out.println(elementalAttack(choice));
-            case 3 -> changePokemon(choice);
+            case 1 -> normalAttack(choice);
+            case 2 -> elementalAttack(choice);
+            case 3 -> changePokemon();
             case 4 -> healPokemon();
             case 5 -> checkPokemon();
-        }
+        }getMyDamage(choice);
     }
     public int getMyDamage(int choice){
         int damage=0;
         if (choice==1){
-            System.out.println("normal attack");
+
             damage= normalAttack(choice);
 
         }else if(choice==2){
-            System.out.println("elemental attack");
+
             damage= elementalAttack(choice);
 
         }return damage;
@@ -164,7 +166,9 @@ public class Game {
             getMyPokemon(myPokemon,choice).setLifePoints(getMyPokemon(myPokemon,choice).getLifePoints()-getEnemyDamage(choice));
             System.out.println(getMyPokemon(myPokemon,choice).getName()+"'s life points are "+getMyPokemon(myPokemon,choice).getLifePoints());
             System.out.println();
+
             printActionMenu();
+            System.out.println("my damage is "+getMyDamage(choice));
             getEnemyPokemon(enemyPokemon).setLifePoints(getEnemyPokemon(enemyPokemon).getLifePoints()-getMyDamage(choice));
             System.out.println(getEnemyPokemon(enemyPokemon).getName()+"'s health is "+getEnemyPokemon(enemyPokemon).getLifePoints());
             System.out.println();
