@@ -7,6 +7,7 @@ public class Game {
     ArrayList<Pokemon> enemyPokemon;
     int crystalCounter = 0;
     Pokemon myCurrentFighter = null;
+    Pokemon opponentCurrentFighter=null;
     int getMyDamage = 0;
 
     public int getCrystalCounter() {
@@ -25,14 +26,14 @@ public class Game {
 
     public int normalAttack() {
 
-        return getMyCurrentFighter().getAttack() - getEnemyPokemon(enemyPokemon).getDefence();
+        return getMyCurrentFighter().getAttack() - getOpponentCurrentFighter().getDefence();
     }
 
     public int elementalAttack() {
-        if (!checkElementalDependency(enemyPokemon)) {
+        if (!checkElementalDependency()) {
 
             return getMyCurrentFighter().getAttack();
-        } else return getMyCurrentFighter().getAttack() - 2 * getEnemyPokemon(enemyPokemon).getDefence();
+        } else return getMyCurrentFighter().getAttack() - 2 * getOpponentCurrentFighter().getDefence();
     }
 
 
@@ -141,7 +142,7 @@ public class Game {
         MenuLayout.promptEnterKey();
         printEnemyPokemon();
 
-        drawCurrentEnemy();
+        getCrystals();
         System.out.println("\n" + "Choose your fighter");
         for (int i = 0; i < myPokemon.size(); i++) {
             System.out.println((i + 1) + " " + myPokemon.get(i).getName());
@@ -150,59 +151,52 @@ public class Game {
 
 
     public Pokemon getEnemyPokemon(ArrayList<Pokemon> enemyPokemon) {
-        Pokemon result = null;
-//        if (enemyPokemon.get(0).getLifePoints() > 0) {
-//            result = enemyPokemon.get(0);
-//        } else if (enemyPokemon.get(1).getLifePoints() > 0) {
-//            result = enemyPokemon.get(1);
-//        }
-//        if (enemyPokemon.get(2).getLifePoints() > 0) {
-//            result = enemyPokemon.get(2);
-//        } else if (enemyPokemon.get(3).getLifePoints() > 0) {
-//            result = enemyPokemon.get(3);
-//        } else if (enemyPokemon.get(4).getLifePoints() > 0)
-//            result = enemyPokemon.get(4);
-//        else {
-//            System.out.println("game over, you won");
-//        }
+
+//
 
         if (enemyPokemon.get(0).getLifePoints() > 0 & enemyPokemon.get(1).getLifePoints() > 0 & enemyPokemon.get(2).getLifePoints() > 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
-            result = enemyPokemon.get(0);
+            setOpponentCurrentFighter(enemyPokemon.get(0));
         } else if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() > 0 & enemyPokemon.get(2).getLifePoints() > 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
-            result = enemyPokemon.get(1);
+            setOpponentCurrentFighter(enemyPokemon.get(1));
         } else if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() > 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
-            result = enemyPokemon.get(2);
+            setOpponentCurrentFighter(enemyPokemon.get(2));
         } else if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() <= 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
-            result = enemyPokemon.get(3);
+            setOpponentCurrentFighter(enemyPokemon.get(3));
         } else if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() <= 0 & enemyPokemon.get(3).getLifePoints() <= 0 & enemyPokemon.get(4).getLifePoints() > 0) {
-            result = enemyPokemon.get(4);
-        } else {
-            System.out.println("game over you won ");
-        }
-        return result;
+            setOpponentCurrentFighter(enemyPokemon.get(4));
+        } return getOpponentCurrentFighter();
+
     }
 
     public void printEnemyPokemon() {
-        if (getEnemyPokemon(enemyPokemon) == enemyPokemon.get(0)) {
+        if (getOpponentCurrentFighter() == enemyPokemon.get(0)) {
             MenuLayout.drawFiles("cubone.txt");
             System.out.println(enemyPokemon.get(0));
         }
-        if (getEnemyPokemon(enemyPokemon) == enemyPokemon.get(1)) {
+        if (getOpponentCurrentFighter() == enemyPokemon.get(1)) {
             MenuLayout.drawFiles("kecleon.txt");
             System.out.println(enemyPokemon.get(4));
         }
-        if (getEnemyPokemon(enemyPokemon) == enemyPokemon.get(2)) {
+        if (getOpponentCurrentFighter() == enemyPokemon.get(2)) {
             MenuLayout.drawFiles("raichu.txt");
             System.out.println(enemyPokemon.get(2));
         }
-        if (getEnemyPokemon(enemyPokemon) == enemyPokemon.get(3)) {
+        if (getOpponentCurrentFighter() == enemyPokemon.get(3)) {
             MenuLayout.drawFiles("tyranitar.txt");
             System.out.println(enemyPokemon.get(3));
         }
-        if (getEnemyPokemon(enemyPokemon) == enemyPokemon.get(4)) {
+        if (getOpponentCurrentFighter() == enemyPokemon.get(4)) {
             MenuLayout.drawFiles("charizard.txt");
             System.out.println(enemyPokemon.get(4));
         }
+    }
+
+    public Pokemon getOpponentCurrentFighter() {
+        return opponentCurrentFighter;
+    }
+
+    public void setOpponentCurrentFighter(Pokemon opponentCurrentFighter) {
+        this.opponentCurrentFighter = opponentCurrentFighter;
     }
 
     public Pokemon getMyCurrentFighter() {
@@ -229,47 +223,55 @@ public class Game {
 
     }
 
-    public Pokemon changeTurn(ArrayList<Pokemon> enemyPokemon) {
-        Pokemon turn = getEnemyPokemon(enemyPokemon);
-        if (turn.equals(getEnemyPokemon(enemyPokemon))) {
+    public Pokemon changeTurn() {
+        Pokemon turn = getOpponentCurrentFighter();
+        if (turn.equals(getOpponentCurrentFighter())) {
             turn = getMyCurrentFighter();
         } else {
-            turn = getEnemyPokemon(enemyPokemon);
+            turn = getOpponentCurrentFighter();
         }
         return turn;
     }
 
     public void fightBattle() {
-        while (getMyCurrentFighter().getLifePoints() > 0 && getEnemyPokemon(enemyPokemon).getLifePoints() > 0) {
+        setOpponentCurrentFighter(enemyPokemon.get(0));
+        while (true) {
 
-            if (getEnemyPokemon(enemyPokemon).getLifePoints() > 0) {
-                System.out.println(getEnemyPokemon(enemyPokemon).getName() + "'s damage is " + getEnemyDamage());
+            if (getOpponentCurrentFighter().getLifePoints() > 0) {
+                System.out.println(getOpponentCurrentFighter().getName() + "'s damage is " + getEnemyDamage());
                 getMyCurrentFighter().setLifePoints(getMyCurrentFighter().getLifePoints() - getEnemyDamage());
                 if(getMyCurrentFighter().getLifePoints()>0) {
                     System.out.println(getMyCurrentFighter().getName() + "'s life points are " + getMyCurrentFighter().getLifePoints());
                 }else {
                     System.out.println(getMyCurrentFighter().getName() + "is knocked out ");
-                    changeTurn(enemyPokemon);
+                    changeTurn();
                 }
             } else {
-                System.out.println("you win");break;
+                System.out.println("Game over, you win");break;
             }
 
 
             if (myCurrentFighter.getLifePoints() > 0) {
                 printActionMenu();
                 System.out.println(getMyCurrentFighter().getName() + "'s damage is " + getGetMyDamage());
-                getEnemyPokemon(enemyPokemon).setLifePoints(getEnemyPokemon(enemyPokemon).getLifePoints() - getGetMyDamage());
-                System.out.println(getEnemyPokemon(enemyPokemon).getName() + "'s health is " + getEnemyPokemon(enemyPokemon).getLifePoints());
-                System.out.println();
-                changeTurn(enemyPokemon);
+                getOpponentCurrentFighter().setLifePoints(getOpponentCurrentFighter().getLifePoints() - getGetMyDamage());
+                if(getOpponentCurrentFighter().getLifePoints()>0) {
+
+                    System.out.println(getOpponentCurrentFighter().getName() + "'s health is " + getOpponentCurrentFighter().getLifePoints());
+                }else {
+                    System.out.println(getOpponentCurrentFighter().getName()+" is knocked out");
+                    changeTurn();
+                    setCrystalCounter(getCrystalCounter()+1);
+                    setOpponentCurrentFighter(getEnemyPokemon(enemyPokemon));
+                }
+
             } else {
                 changePokemon();
             }
         }
     }
 
-    private void drawCurrentEnemy() {
+    private void getCrystals() {
         int deathCounter = 0;
 
         for (Pokemon pokemon : enemyPokemon) {
@@ -307,37 +309,37 @@ public class Game {
     }
 
     public int getEnemyDamage() {
-        if (checkElementalDependency(enemyPokemon)) {
-            return getEnemyPokemon(enemyPokemon).getAttack();
+        if (checkElementalDependency()) {
+            return getOpponentCurrentFighter().getAttack();
         } else {
-            return getEnemyPokemon(enemyPokemon).getAttack() - getMyCurrentFighter().getDefence();
+            return getOpponentCurrentFighter().getAttack() - getMyCurrentFighter().getDefence();
         }
     }
 
-    public boolean checkElementalDependency(ArrayList<Pokemon> enemyPokemon) {
+    public boolean checkElementalDependency() {
         boolean result = false;
-        if (changeTurn(enemyPokemon).equals(getMyCurrentFighter()) & (getMyCurrentFighter().getType().equals("electric")) & getEnemyPokemon(enemyPokemon).getType().equals("water")) {
+        if (changeTurn().equals(getMyCurrentFighter()) & (getMyCurrentFighter().getType().equals("electric")) & getOpponentCurrentFighter().getType().equals("water")) {
             result = true;
         } else if
-        (changeTurn(enemyPokemon).equals(getMyCurrentFighter()) & (getMyCurrentFighter().getType().equals("water")) & getEnemyPokemon(enemyPokemon).getType().equals("fire")) {
+        (changeTurn().equals(getMyCurrentFighter()) & (getMyCurrentFighter().getType().equals("water")) & getOpponentCurrentFighter().getType().equals("fire")) {
             result = true;
         } else if
-        (changeTurn(enemyPokemon).equals(getMyCurrentFighter()) & (getMyCurrentFighter().getType().equals("fire")) & getEnemyPokemon(enemyPokemon).getType().equals("rock")) {
+        (changeTurn().equals(getMyCurrentFighter()) & (getMyCurrentFighter().getType().equals("fire")) & getOpponentCurrentFighter().getType().equals("rock")) {
             result = true;
         } else if
-        (changeTurn(enemyPokemon).equals(getMyCurrentFighter()) & (getMyCurrentFighter().getType().equals("rock")) & getEnemyPokemon(enemyPokemon).getType().equals("electric")) {
+        (changeTurn().equals(getMyCurrentFighter()) & (getMyCurrentFighter().getType().equals("rock")) & getOpponentCurrentFighter().getType().equals("electric")) {
             result = true;
         } else if
-        (changeTurn(enemyPokemon).equals(getEnemyPokemon(enemyPokemon)) & (getEnemyPokemon(enemyPokemon).getType().equals("electric")) & getMyCurrentFighter().getType().equals("water")) {
+        (changeTurn().equals(getOpponentCurrentFighter()) & (getOpponentCurrentFighter().getType().equals("electric")) & getMyCurrentFighter().getType().equals("water")) {
             result = true;
         } else if
-        (changeTurn(enemyPokemon).equals(getEnemyPokemon(enemyPokemon)) & (getEnemyPokemon(enemyPokemon).getType().equals("water")) & getMyCurrentFighter().getType().equals("fire")) {
+        (changeTurn().equals(getOpponentCurrentFighter()) & (getOpponentCurrentFighter().getType().equals("water")) & getMyCurrentFighter().getType().equals("fire")) {
             result = true;
         } else if
-        (changeTurn(enemyPokemon).equals(getEnemyPokemon(enemyPokemon)) & (getEnemyPokemon(enemyPokemon).getType().equals("fire")) & getMyCurrentFighter().getType().equals("rock")) {
+        (changeTurn().equals(getOpponentCurrentFighter()) & (getOpponentCurrentFighter().getType().equals("fire")) & getMyCurrentFighter().getType().equals("rock")) {
             result = true;
         } else if
-        (changeTurn(enemyPokemon).equals(getEnemyPokemon(enemyPokemon)) & (getEnemyPokemon(enemyPokemon).getType().equals("rock")) & getMyCurrentFighter().getType().equals("electric")) {
+        (changeTurn().equals(getOpponentCurrentFighter()) & (getOpponentCurrentFighter().getType().equals("rock")) & getMyCurrentFighter().getType().equals("electric")) {
             result = true;
         }
         return !result;
