@@ -5,8 +5,9 @@ public class Game {
     ArrayList<Game> game;
     ArrayList<Pokemon> myPokemon;
     ArrayList<Pokemon> enemyPokemon;
-    int crystalCounter=0;
-    Pokemon myCurrentFighter=null;
+    int crystalCounter = 0;
+    Pokemon myCurrentFighter = null;
+    int getMyDamage=0;
 
     public int getCrystalCounter() {
         return crystalCounter;
@@ -28,18 +29,18 @@ public class Game {
     }
 
     public int elementalAttack() {
-        if (checkElementalDependency( enemyPokemon)) {
+        if (!checkElementalDependency(enemyPokemon)) {
 
             return getMyCurrentFighter().getAttack();
-        } else return getMyCurrentFighter().getAttack() - getEnemyPokemon(enemyPokemon).getDefence();
+        } else return getMyCurrentFighter().getAttack() - 2 * getEnemyPokemon(enemyPokemon).getDefence();
     }
 
 
     public void healPokemon() {
-        if(crystalCounter>0&&(myPokemon.get(0).getLifePoints()<0||myPokemon.get(1).getLifePoints()<0||myPokemon.get(2).getLifePoints()<0)){
+        if (crystalCounter > 0 && (myPokemon.get(0).getLifePoints() < 0 || myPokemon.get(1).getLifePoints() < 0 || myPokemon.get(2).getLifePoints() < 0)) {
             for (int i = 0; i < myPokemon.size(); i++) {
-                if (myPokemon.get(i).getLifePoints()<=0){
-                    System.out.println((i+1)+myPokemon.get(i).getName());
+                if (myPokemon.get(i).getLifePoints() <= 0) {
+                    System.out.println((i + 1) + myPokemon.get(i).getName());
                 }
             }
         }
@@ -74,26 +75,37 @@ public class Game {
     public void chooseAction() {
         Scanner in = new Scanner(System.in);
         MenuLayout.checkValidInput(in, "[12345]", "Invalid input(1,2,3,4,5): ");
-        int choice=in.nextInt();
+        int choice = in.nextInt();
         switch (choice) {
             case 1 -> normalAttack();
             case 2 -> elementalAttack();
             case 3 -> changePokemon();
             case 4 -> healPokemon();
             case 5 -> checkPokemon();
-        }getMyDamage(choice);
+        }
+        checkMyDamage(choice);
     }
-    public int getMyDamage(int choice){
-        int damage=0;
-        if (choice==1){
 
-            damage= normalAttack();
+    public int getGetMyDamage() {
+        return getMyDamage;
+    }
 
-        }else if(choice==2){
+    public void setGetMyDamage(int getMyDamage) {
+        this.getMyDamage = getMyDamage;
+    }
 
-            damage= elementalAttack();
+    public void checkMyDamage(int choice) {
+        int damage = 0;
+        if (choice == 1) {
 
-        }return damage;
+            damage = normalAttack();
+
+        } else if (choice == 2) {
+
+            damage = elementalAttack();
+
+        }
+        setGetMyDamage(damage);
     }
 
     public void startGame(ArrayList<Pokemon> myPokemon) {
@@ -162,7 +174,7 @@ public class Game {
         Pokemon result = null;
         Scanner in = new Scanner(System.in);
         MenuLayout.checkValidInput(in, "[123]", "Invalid input(1,2,3): ");
-        int choice=in.nextInt();
+        int choice = in.nextInt();
 
         switch (choice) {
             case 1 -> result = myPokemon.get(0);
@@ -183,21 +195,20 @@ public class Game {
         return turn;
     }
 
-    public void fightBattle(int choice) {
-        //while (((myPokemon.get(0).getLifePoints() > 0) || (myPokemon.get(1).getLifePoints() > 0) || (myPokemon.get(2).getLifePoints() > 0)) && ((enemyPokemon.get(0).getLifePoints() > 0) || (enemyPokemon.get(1).getLifePoints() > 0) || (enemyPokemon.get(2).getLifePoints() > 0) || (enemyPokemon.get(3).getLifePoints() > 0) || (enemyPokemon.get(4).getLifePoints() > 0))) {
-
-            while (getMyCurrentFighter().getLifePoints()>=0&&getEnemyPokemon(enemyPokemon).getLifePoints()>=0){
-            System.out.println(getEnemyPokemon(enemyPokemon).getName()+"'s damage is " + getEnemyDamage());
-            getMyCurrentFighter().setLifePoints(getMyCurrentFighter().getLifePoints()-getEnemyDamage());
-            System.out.println(getMyCurrentFighter().getName()+"'s life points are "+getMyCurrentFighter().getLifePoints());
+    public void fightBattle() {
+        while (getMyCurrentFighter().getLifePoints() >= 0 && getEnemyPokemon(enemyPokemon).getLifePoints() >= 0) {
+            System.out.println(getEnemyPokemon(enemyPokemon).getName() + "'s damage is " + getEnemyDamage());
+            getMyCurrentFighter().setLifePoints(getMyCurrentFighter().getLifePoints() - getEnemyDamage());
+            System.out.println(getMyCurrentFighter().getName() + "'s life points are " + getMyCurrentFighter().getLifePoints());
             System.out.println();
+            changeTurn(enemyPokemon);
 
             printActionMenu();
-            System.out.println(getMyCurrentFighter().getName()+"'s damage is "+getMyDamage(choice));
-            getEnemyPokemon(enemyPokemon).setLifePoints(getEnemyPokemon(enemyPokemon).getLifePoints()-getMyDamage(choice));
-            System.out.println(getEnemyPokemon(enemyPokemon).getName()+"'s health is "+getEnemyPokemon(enemyPokemon).getLifePoints());
+            System.out.println(getMyCurrentFighter().getName() + "'s damage is " + getGetMyDamage());
+            getEnemyPokemon(enemyPokemon).setLifePoints(getEnemyPokemon(enemyPokemon).getLifePoints() - getGetMyDamage());
+            System.out.println(getEnemyPokemon(enemyPokemon).getName() + "'s health is " + getEnemyPokemon(enemyPokemon).getLifePoints());
             System.out.println();
-                changeTurn(enemyPokemon);
+            changeTurn(enemyPokemon);
         }
     }
 
@@ -209,7 +220,7 @@ public class Game {
         }
     }
 
-    public boolean checkElementalDependency( ArrayList<Pokemon> enemyPokemon) {
+    public boolean checkElementalDependency(ArrayList<Pokemon> enemyPokemon) {
         boolean result = false;
         if (changeTurn(enemyPokemon).equals(getMyCurrentFighter()) & (getMyCurrentFighter().getType().equals("electric")) & getEnemyPokemon(enemyPokemon).getType().equals("water")) {
             result = true;
@@ -235,7 +246,7 @@ public class Game {
         (changeTurn(enemyPokemon).equals(getEnemyPokemon(enemyPokemon)) & (getEnemyPokemon(enemyPokemon).getType().equals("rock")) & getMyCurrentFighter().getType().equals("electric")) {
             result = true;
         }
-        return result;
+        return !result;
     }
 }
 
