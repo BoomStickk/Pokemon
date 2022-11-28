@@ -7,7 +7,8 @@ public class Game {
     ArrayList<Pokemon> enemyPokemon;
     int crystalCounter = 0;
     Pokemon myCurrentFighter = null;
-    int getMyDamage=0;
+    int getMyDamage = 0;
+    MenuLayout menu;
 
     public int getCrystalCounter() {
         return crystalCounter;
@@ -38,21 +39,46 @@ public class Game {
 
     public void healPokemon() {
         if (crystalCounter > 0 && (myPokemon.get(0).getLifePoints() < 0 || myPokemon.get(1).getLifePoints() < 0 || myPokemon.get(2).getLifePoints() < 0)) {
+            System.out.println("what pokemon do you wish to heal");
+
             for (int i = 0; i < myPokemon.size(); i++) {
                 if (myPokemon.get(i).getLifePoints() <= 0) {
-                    System.out.println((i + 1) + myPokemon.get(i).getName());
+                    System.out.println((i + 1) +" "+ myPokemon.get(i).getName());
                 }
+            }Scanner in = new Scanner(System.in);
+            MenuLayout.checkValidInput(in, "[123]", "Invalid input(1,2,3): ");
+            int choice = in.nextInt();
+            switch (choice) {
+                case 1 -> myPokemon.get(0).setLifePoints(500);
+                case 2 -> myPokemon.get(1).setLifePoints(500);
+                case 3 -> myPokemon.get(2).setLifePoints(500);
             }
+            System.out.println("your pokemon has been healed");
+            System.out.println("press enter to continue ");
+            MenuLayout.promptEnterKey();
+
+
+
         }
     }
 
     public void changePokemon() {
-        System.out.println("change pokemon");
         System.out.println("\n" + "Choose your fighter");
+        int deathCounter = 0;
+
         for (int i = 0; i < myPokemon.size(); i++) {
-            System.out.println((i + 1) + " " + myPokemon.get(i).getName());
+            if (myPokemon.get(i).getLifePoints() > 0) {
+                System.out.println((i + 1) + " " + myPokemon.get(i).getName());
+                deathCounter++;
+            }
         }
-        chooseMyPokemon(myPokemon);
+        if (deathCounter > 0) {
+
+
+            chooseMyPokemon(myPokemon);
+        } else {
+            System.out.println("Game over, you lost ");
+        }
     }
 
     public void checkPokemon() {
@@ -110,8 +136,6 @@ public class Game {
 
     public void startGame(ArrayList<Pokemon> myPokemon) {
         System.out.println("\n" + "Lets the game begin");
-        printEnemyPokemon();
-
         System.out.println("\n" + "Choose your fighter");
         for (int i = 0; i < myPokemon.size(); i++) {
             System.out.println((i + 1) + " " + myPokemon.get(i).getName());
@@ -121,20 +145,33 @@ public class Game {
 
     public Pokemon getEnemyPokemon(ArrayList<Pokemon> enemyPokemon) {
         Pokemon result = null;
+//        if (enemyPokemon.get(0).getLifePoints() > 0) {
+//            result = enemyPokemon.get(0);
+//        } else if (enemyPokemon.get(1).getLifePoints() > 0) {
+//            result = enemyPokemon.get(1);
+//        }
+//        if (enemyPokemon.get(2).getLifePoints() > 0) {
+//            result = enemyPokemon.get(2);
+//        } else if (enemyPokemon.get(3).getLifePoints() > 0) {
+//            result = enemyPokemon.get(3);
+//        } else if (enemyPokemon.get(4).getLifePoints() > 0)
+//            result = enemyPokemon.get(4);
+//        else {
+//            System.out.println("game over, you won");
+//        }
+
         if (enemyPokemon.get(0).getLifePoints() > 0 & enemyPokemon.get(1).getLifePoints() > 0 & enemyPokemon.get(2).getLifePoints() > 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
             result = enemyPokemon.get(0);
-        }
-        if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() > 0 & enemyPokemon.get(2).getLifePoints() > 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
+        } else if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() > 0 & enemyPokemon.get(2).getLifePoints() > 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
             result = enemyPokemon.get(1);
-        }
-        if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() > 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
+        } else if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() > 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
             result = enemyPokemon.get(2);
-        }
-        if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() <= 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
+        } else if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() <= 0 & enemyPokemon.get(3).getLifePoints() > 0 & enemyPokemon.get(4).getLifePoints() > 0) {
             result = enemyPokemon.get(3);
-        }
-        if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() <= 0 & enemyPokemon.get(3).getLifePoints() <= 0 & enemyPokemon.get(4).getLifePoints() > 0) {
+        } else if (enemyPokemon.get(0).getLifePoints() <= 0 & enemyPokemon.get(1).getLifePoints() <= 0 & enemyPokemon.get(2).getLifePoints() <= 0 & enemyPokemon.get(3).getLifePoints() <= 0 & enemyPokemon.get(4).getLifePoints() > 0) {
             result = enemyPokemon.get(4);
+        } else {
+            System.out.println("game over you won");
         }
         return result;
     }
@@ -176,6 +213,7 @@ public class Game {
         MenuLayout.checkValidInput(in, "[123]", "Invalid input(1,2,3): ");
         int choice = in.nextInt();
 
+
         switch (choice) {
             case 1 -> result = myPokemon.get(0);
             case 2 -> result = myPokemon.get(1);
@@ -196,19 +234,70 @@ public class Game {
     }
 
     public void fightBattle() {
-        while (getMyCurrentFighter().getLifePoints() >= 0 && getEnemyPokemon(enemyPokemon).getLifePoints() >= 0) {
-            System.out.println(getEnemyPokemon(enemyPokemon).getName() + "'s damage is " + getEnemyDamage());
-            getMyCurrentFighter().setLifePoints(getMyCurrentFighter().getLifePoints() - getEnemyDamage());
-            System.out.println(getMyCurrentFighter().getName() + "'s life points are " + getMyCurrentFighter().getLifePoints());
-            System.out.println();
-            changeTurn(enemyPokemon);
+        while (getMyCurrentFighter().getLifePoints() > 0 && getEnemyPokemon(enemyPokemon).getLifePoints() > 0) {
+            drawCurrentEnemy();
+            if (getEnemyPokemon(enemyPokemon).getLifePoints() > 0) {
+                System.out.println(getEnemyPokemon(enemyPokemon).getName() + "'s damage is " + getEnemyDamage());
+                getMyCurrentFighter().setLifePoints(getMyCurrentFighter().getLifePoints() - getEnemyDamage());
+                System.out.println(getMyCurrentFighter().getName() + "'s life points are " + getMyCurrentFighter().getLifePoints());
+                System.out.println();
+                changeTurn(enemyPokemon);
+            } else {
+                System.out.println("you win");break;
+            }
 
-            printActionMenu();
-            System.out.println(getMyCurrentFighter().getName() + "'s damage is " + getGetMyDamage());
-            getEnemyPokemon(enemyPokemon).setLifePoints(getEnemyPokemon(enemyPokemon).getLifePoints() - getGetMyDamage());
-            System.out.println(getEnemyPokemon(enemyPokemon).getName() + "'s health is " + getEnemyPokemon(enemyPokemon).getLifePoints());
-            System.out.println();
-            changeTurn(enemyPokemon);
+            if (myCurrentFighter.getLifePoints() > 0) {
+                printActionMenu();
+                System.out.println(getMyCurrentFighter().getName() + "'s damage is " + getGetMyDamage());
+                getEnemyPokemon(enemyPokemon).setLifePoints(getEnemyPokemon(enemyPokemon).getLifePoints() - getGetMyDamage());
+                System.out.println(getEnemyPokemon(enemyPokemon).getName() + "'s health is " + getEnemyPokemon(enemyPokemon).getLifePoints());
+                System.out.println();
+                changeTurn(enemyPokemon);
+            } else {
+                changePokemon();
+            }
+        }
+    }
+
+    private void drawCurrentEnemy() {
+        int deathCounter = 0;
+
+        for (Pokemon pokemon : enemyPokemon) {
+            if (pokemon.getLifePoints() <= 0) {
+                deathCounter++;
+            }
+        }
+        switch (deathCounter) {
+            case 0 -> {
+                System.out.println("first battle");
+                printEnemyPokemon();
+                setCrystalCounter(getCrystalCounter()+1);
+
+            }
+            case 1 -> {
+                System.out.println("second battle");
+                printEnemyPokemon();
+                setCrystalCounter(getCrystalCounter()+1);
+
+            }
+            case 2 -> {
+                System.out.println("third battle");
+                printEnemyPokemon();
+                setCrystalCounter(getCrystalCounter()+1);
+
+            }
+            case 3 -> {
+                System.out.println("forth battle");
+                printEnemyPokemon();
+                setCrystalCounter(getCrystalCounter()+1);
+
+            }
+            case 4 -> {
+                System.out.println("final battle");
+                printEnemyPokemon();
+                setCrystalCounter(getCrystalCounter()+1);
+
+            }
         }
     }
 

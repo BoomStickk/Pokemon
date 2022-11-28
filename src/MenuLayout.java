@@ -55,7 +55,10 @@ public class MenuLayout {
                 choosePokemon(pokemonChoice,  myPokemon);
                 game.startGame(myPokemon);
                 game.chooseMyPokemon(myPokemon);
+
                 game.fightBattle();
+
+
                 System.out.println("\n" + "Press enter to continue...");
                 promptEnterKey();
             }
@@ -78,7 +81,7 @@ public class MenuLayout {
         }
     }
 
-    public static void choosePokemon(ArrayList<Pokemon> pokemonChoice, ArrayList<Pokemon> myPokemon) {
+    public void choosePokemon(ArrayList<Pokemon> pokemonChoice, ArrayList<Pokemon> myPokemon) {
         drawFiles("choice.txt");
         System.out.println("                       1.Pikachu                                       2.Charmender                                                           3.Squirtle                                            4.Ninetales                                                    5.Sandshry");
         printPokemonInfo(pokemonChoice);
@@ -128,12 +131,12 @@ public class MenuLayout {
         return false;
     }
 
-    public void promptEnterKey() {
+    public static void promptEnterKey() {
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }
 
-    public static void printPokemonInfo(ArrayList<Pokemon> pokemonChoice) {
+    public  void printPokemonInfo(ArrayList<Pokemon> pokemonChoice) {
         for (int i = 0; i < pokemonChoice.size(); i++) {
             System.out.println((i + 1) + " " + pokemonChoice.get(i));
         }
