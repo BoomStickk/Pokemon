@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuLayout {
-    ArrayList<Pokemon> pokemonChoice;
-    ArrayList<Pokemon> myPokemon;
-    Game game;
+    private final ArrayList<Pokemon> pokemonChoice;
+    private final ArrayList<Pokemon> myPokemon;
+    private final Game game;
 
 
     public MenuLayout(ArrayList<Pokemon> pokemonChoice, ArrayList<Pokemon> myPokemon, Game game) {
@@ -46,13 +46,13 @@ public class MenuLayout {
         } while (choice != 4);
     }
 
-    public void chooseMenuOption( int choice) {
+    public void chooseMenuOption(int choice) {
 
         switch (choice) {
             case 1 -> {
                 drawFiles("ash.txt");
                 promptEnterKey();
-                choosePokemon(pokemonChoice,  myPokemon);
+                choosePokemon(pokemonChoice, myPokemon);
                 game.startGame(myPokemon);
                 game.chooseMyPokemon(myPokemon);
 
@@ -95,7 +95,7 @@ public class MenuLayout {
         drawFiles("choice.txt");
         System.out.println("                       1.Pikachu                                       2.Charmender                                                           3.Squirtle                                            4.Ninetales                                                    5.Sandshry");
         printPokemonInfo(pokemonChoice);
-        Scanner in=new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
         System.out.println("\n" + "Choose 3 pokemon: ");
         int a = 0, b = 0, c = 0, d = 0, e = 0;
         while (myPokemon.size() < 3) {
@@ -146,11 +146,12 @@ public class MenuLayout {
         scanner.nextLine();
     }
 
-    public  void printPokemonInfo(ArrayList<Pokemon> pokemonChoice) {
+    public void printPokemonInfo(ArrayList<Pokemon> pokemonChoice) {
         for (int i = 0; i < pokemonChoice.size(); i++) {
             System.out.println((i + 1) + " " + pokemonChoice.get(i));
         }
     }
+
 
 }
 

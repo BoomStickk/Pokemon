@@ -27,7 +27,7 @@ public class Main {
         enemyPokemon.add(electric2);
         enemyPokemon.add(rock3);
         enemyPokemon.add(fire3);
-        Game game1=new Game(game,myPokemon,enemyPokemon);
+        Game game1=new Game(myPokemon,enemyPokemon);
         MenuLayout menu = new MenuLayout(pokemonChoice,myPokemon,game1);
         System.out.println();
 

@@ -2,13 +2,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    ArrayList<Game> game;
-    ArrayList<Pokemon> myPokemon;
-    ArrayList<Pokemon> enemyPokemon;
-    int crystalCounter = 0;
-    Pokemon myCurrentFighter = null;
-    Pokemon opponentCurrentFighter = null;
-    int getMyDamage = 0;
+    private final ArrayList<Pokemon> myPokemon;
+    private final ArrayList<Pokemon> enemyPokemon;
+    private int crystalCounter = 0;
+    private Pokemon myCurrentFighter = null;
+    private Pokemon opponentCurrentFighter = null;
+    private int getMyDamage = 0;
 
     public int getCrystalCounter() {
         return crystalCounter;
@@ -18,8 +17,7 @@ public class Game {
         this.crystalCounter = crystalCounter;
     }
 
-    Game(ArrayList<Game> game, ArrayList<Pokemon> myPokemon, ArrayList<Pokemon> enemyPokemon) {
-        this.game = game;
+    Game(ArrayList<Pokemon> myPokemon, ArrayList<Pokemon> enemyPokemon) {
         this.myPokemon = myPokemon;
         this.enemyPokemon = enemyPokemon;
     }
@@ -123,9 +121,9 @@ public class Game {
 
             setGetMyDamage(elementalAttack());
 
-        } else if(choice==3||choice==4){
+        } else if (choice == 3 || choice == 4) {
             fightBattle();
-        }else {
+        } else {
             actMyTurn();
         }
 
@@ -166,27 +164,27 @@ public class Game {
     public void printEnemyPokemon() {
         if (getOpponentCurrentFighter() == enemyPokemon.get(0)) {
             MenuLayout.drawFiles("cubone.txt");
-            System.out.println(enemyPokemon.get(0)+"\n");
+            System.out.println(enemyPokemon.get(0) + "\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(1)) {
             MenuLayout.drawFiles("kecleon.txt");
             System.out.println("Get ready for the second battle");
-            System.out.println(enemyPokemon.get(1)+"\n");
+            System.out.println(enemyPokemon.get(1) + "\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(2)) {
             MenuLayout.drawFiles("raichu.txt");
             System.out.println("The third won't be as easy");
-            System.out.println(enemyPokemon.get(2)+"\n");
+            System.out.println(enemyPokemon.get(2) + "\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(3)) {
             MenuLayout.drawFiles("tyranitar.txt");
             System.out.println("You are doing pretty good, onto the forth");
-            System.out.println(enemyPokemon.get(3)+"\n");
+            System.out.println(enemyPokemon.get(3) + "\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(4)) {
             MenuLayout.drawFiles("charizard.txt");
             System.out.println("You have no chance, you will be done in this final battle");
-            System.out.println(enemyPokemon.get(4)+"\n");
+            System.out.println(enemyPokemon.get(4) + "\n");
         }
     }
 
@@ -234,6 +232,7 @@ public class Game {
 
     public void fightBattle() {
         while (true) {
+            drawVersusScreen();
 
             if (actOpponentTurn()) break;
 
@@ -294,7 +293,6 @@ public class Game {
     }
 
 
-
     public int getEnemyDamage() {
         if (checkElementalDependency()) {
             return getOpponentCurrentFighter().getAttack();
@@ -330,6 +328,60 @@ public class Game {
             result = true;
         }
         return !result;
+    }
+
+    public void drawVersusScreen() {
+        if (getMyCurrentFighter().getName().equals("Pikachu") && getOpponentCurrentFighter().getName().equals("Cubone")) {
+            MenuLayout.drawFiles("pikatch vs cubone.txt");
+        } else if (getMyCurrentFighter().getName().equals("Pikachu") && getOpponentCurrentFighter().getName().equals("Kecleon")) {
+            MenuLayout.drawFiles("pikatchu vs kecleon.txt");
+        } else if (getMyCurrentFighter().getName().equals("Pikachu") && getOpponentCurrentFighter().getName().equals("Raichu")) {
+            MenuLayout.drawFiles("pikatchu vs raichu.txt");
+        } else if (getMyCurrentFighter().getName().equals("Pikachu") && getOpponentCurrentFighter().getName().equals("Tyranitar")) {
+            MenuLayout.drawFiles("pikatchu vs tyranitar.txt");
+        } else if (getMyCurrentFighter().getName().equals("Pikachu") && getOpponentCurrentFighter().getName().equals("Charizard")) {
+            MenuLayout.drawFiles("pikatchu vs charizard.txt");
+        } else if (getMyCurrentFighter().getName().equals("Charmender") && getOpponentCurrentFighter().getName().equals("Cubone")) {
+            MenuLayout.drawFiles("charmender vs cubone.txt");
+        } else if (getMyCurrentFighter().getName().equals("Charmender") && getOpponentCurrentFighter().getName().equals("Kecleon")) {
+            MenuLayout.drawFiles("charmender vs kecleon.txt");
+        } else if (getMyCurrentFighter().getName().equals("Charmender") && getOpponentCurrentFighter().getName().equals("Raichu")) {
+            MenuLayout.drawFiles("charmender vs raichu.txt");
+        } else if (getMyCurrentFighter().getName().equals("Charmender") && getOpponentCurrentFighter().getName().equals("Tyranitar")) {
+            MenuLayout.drawFiles("charmender vs tyranitar.txt");
+        } else if (getMyCurrentFighter().getName().equals("Charmender") && getOpponentCurrentFighter().getName().equals("Charizard")) {
+            MenuLayout.drawFiles("charmender vs charizard.txt");
+        } else if (getMyCurrentFighter().getName().equals("Ninetails") && getOpponentCurrentFighter().getName().equals("Cubone")) {
+            MenuLayout.drawFiles("nine vs cubone.txt");
+        } else if (getMyCurrentFighter().getName().equals("Ninetails") && getOpponentCurrentFighter().getName().equals("Kecleon")) {
+            MenuLayout.drawFiles("nine vs kecleon.txt");
+        } else if (getMyCurrentFighter().getName().equals("Ninetails") && getOpponentCurrentFighter().getName().equals("Raichu")) {
+            MenuLayout.drawFiles("nine vs raichu.txt");
+        } else if (getMyCurrentFighter().getName().equals("Ninetails") && getOpponentCurrentFighter().getName().equals("Tyranitar")) {
+            MenuLayout.drawFiles("nine vs tyranitar.txt");
+        } else if (getMyCurrentFighter().getName().equals("Ninetails") && getOpponentCurrentFighter().getName().equals("Charizard")) {
+            MenuLayout.drawFiles("nine vs charizard.txt");
+        } else if (getMyCurrentFighter().getName().equals("Squirtle") && getOpponentCurrentFighter().getName().equals("Cubone")) {
+            MenuLayout.drawFiles("squirtle vs cubone.txt");
+        } else if (getMyCurrentFighter().getName().equals("Squirtle") && getOpponentCurrentFighter().getName().equals("Kecleon")) {
+            MenuLayout.drawFiles("squirtle vs kecleon.txt");
+        } else if (getMyCurrentFighter().getName().equals("Squirtle") && getOpponentCurrentFighter().getName().equals("Raichu")) {
+            MenuLayout.drawFiles("squirtle vs raichu.txt");
+        } else if (getMyCurrentFighter().getName().equals("Squirtle") && getOpponentCurrentFighter().getName().equals("Tyranitar")) {
+            MenuLayout.drawFiles("squirtle vs tyranitar.txt");
+        } else if (getMyCurrentFighter().getName().equals("Squirtle") && getOpponentCurrentFighter().getName().equals("Charizard")) {
+            MenuLayout.drawFiles("squirtle vs charizard.txt");
+        } else if (getMyCurrentFighter().getName().equals("Sandshry") && getOpponentCurrentFighter().getName().equals("Cubone")) {
+            MenuLayout.drawFiles("sandshru vs cubone.txt");
+        } else if (getMyCurrentFighter().getName().equals("Sandshry") && getOpponentCurrentFighter().getName().equals("Kecleon")) {
+            MenuLayout.drawFiles("sandshru vs kecleon.txt");
+        } else if (getMyCurrentFighter().getName().equals("Sandshry") && getOpponentCurrentFighter().getName().equals("Raichu")) {
+            MenuLayout.drawFiles("sandshru vs raichu.txt");
+        } else if (getMyCurrentFighter().getName().equals("Sandshry") && getOpponentCurrentFighter().getName().equals("Tyranitar")) {
+            MenuLayout.drawFiles("sandshru vs tyranitar.txt");
+        } else if (getMyCurrentFighter().getName().equals("Sandshry") && getOpponentCurrentFighter().getName().equals("Charizard")) {
+            MenuLayout.drawFiles("sandshru vs charizard.txt");
+        }
     }
 }
 
