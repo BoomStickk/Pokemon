@@ -51,9 +51,7 @@ public class Game {
         for (int i = 0; i < myPokemon.size(); i++) {
             System.out.println((i + 1) + " " + myPokemon.get(i).getName());
         }
-        Scanner in=new Scanner(System.in);
-        int choice=in.nextInt();
-        chooseMyPokemon(myPokemon, choice);
+        chooseMyPokemon(myPokemon);
     }
 
     public void checkPokemon() {
@@ -63,20 +61,20 @@ public class Game {
     }
 
     public void printActionMenu() {
-        int choice;
         System.out.println("""
                 1.Normal attack
                 2.Elemental attack
                 3.Change pokemon
                 4.Heal pokemon
                 5.Pokemon info""");
-        Scanner in = new Scanner(System.in);
-        MenuLayout.checkValidInput(in, "[12345]", "Invalid input(1,2,3,4,5): ");
-        choice = in.nextInt();
-        chooseAction(choice);
+
+        chooseAction();
     }
 
-    public void chooseAction(int choice) {
+    public void chooseAction() {
+        Scanner in = new Scanner(System.in);
+        MenuLayout.checkValidInput(in, "[12345]", "Invalid input(1,2,3,4,5): ");
+        int choice=in.nextInt();
         switch (choice) {
             case 1 -> normalAttack();
             case 2 -> elementalAttack();
@@ -160,8 +158,11 @@ public class Game {
         this.myCurrentFighter = myCurrentFighter;
     }
 
-    public void chooseMyPokemon(ArrayList<Pokemon> myPokemon, int choice) {
+    public void chooseMyPokemon(ArrayList<Pokemon> myPokemon) {
         Pokemon result = null;
+        Scanner in = new Scanner(System.in);
+        MenuLayout.checkValidInput(in, "[123]", "Invalid input(1,2,3): ");
+        int choice=in.nextInt();
 
         switch (choice) {
             case 1 -> result = myPokemon.get(0);
@@ -171,10 +172,6 @@ public class Game {
         setMyCurrentFighter(result);
 
     }
-
-//    public Pokemon getMyPokemon(ArrayList<Pokemon> myPokemon, int choice) {
-//        return getMyCurrentFighter();
-//    }
 
     public Pokemon changeTurn(ArrayList<Pokemon> enemyPokemon) {
         Pokemon turn = getEnemyPokemon(enemyPokemon);
