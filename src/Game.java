@@ -261,8 +261,8 @@ public class Game {
 
         } else {
             int deathCounter = 0;
-            for (int i = 0; i < myPokemon.size(); i++) {
-                if (myPokemon.get(i).getLifePoints() <= 0) {
+            for (Pokemon pokemon : myPokemon) {
+                if (pokemon.getLifePoints() <= 0) {
                     deathCounter++;
                 }
             }
