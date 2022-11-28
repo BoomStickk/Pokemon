@@ -9,7 +9,7 @@ public class Main {
         Pokemon fire3 = new Pokemon("Charizard", "big", "dragon", 100, 20, 500,"fire");
         Pokemon water1=new Pokemon("Squirtle","small","turtle",100,20,500,"water");
         Pokemon water2=new Pokemon("Kecleon","medium","chameleon",100,20,500,"water");
-        Pokemon electric1=new Pokemon("Pikachu","small","mouse",100,20,400,"electric");
+        Pokemon electric1=new Pokemon("Pikachu","small","mouse",500,20,4000,"electric");
         Pokemon electric2=new Pokemon("Raichu","medium","mouse",100,20,500,"electric");
         Pokemon rock1=new Pokemon("Sandshry","medium","armadillo",100,20,500,"rock");
         Pokemon rock2=new Pokemon("Cubone","small","kangaroo",100,20,500,"rock");
