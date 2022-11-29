@@ -8,7 +8,7 @@ public class Main {
         Pokemon fire3 = new Pokemon("Charizard", "big", "dragon", 200, 20, 700,"fire");
         Pokemon water1=new Pokemon("Squirtle","small","turtle",100,20,500,"water");
         Pokemon water2=new Pokemon("Kecleon","medium","chameleon",150,40,600,"water");
-        Pokemon electric1=new Pokemon("Pikachu","small","mouse",500,20,500,"electric");
+        Pokemon electric1=new Pokemon("Pikachu","small","mouse",100,20,500,"electric");
         Pokemon electric2=new Pokemon("Raichu","medium","mouse",150,40,600,"electric");
         Pokemon rock1=new Pokemon("Sandshry","medium","armadillo",150,40,600,"rock");
         Pokemon rock2=new Pokemon("Cubone","small","kangaroo",100,20,500,"rock");
@@ -32,7 +32,6 @@ public class Main {
         Game game1=new Game(myPokemon,enemyPokemon);
         MenuLayout menu = new MenuLayout(pokemonChoice,myPokemon,game1);
         System.out.println();
-
         menu.printMainMenu();
 
 
