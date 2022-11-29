@@ -401,13 +401,13 @@ public class Game implements Actionable {
     }
     public void changeEvolutionStats(){
         if(myCurrentFighter.getSize().equals("medium")){
-            myCurrentFighter.setAttack(myCurrentFighter.getAttack()+20);
-            myCurrentFighter.setLifePoints(myCurrentFighter.getLifePoints()+50);
-            myCurrentFighter.setDefence(myCurrentFighter.getDefence()+10);
+            myCurrentFighter.setAttack(myCurrentFighter.getAttack()+50);
+            myCurrentFighter.setLifePoints(600);
+            myCurrentFighter.setDefence(myCurrentFighter.getDefence()+20);
         }else if(myCurrentFighter.getSize().equals("big")){
             myCurrentFighter.setAttack(myCurrentFighter.getAttack()+50);
-            myCurrentFighter.setLifePoints(myCurrentFighter.getLifePoints()+100);
-            myCurrentFighter.setDefence(myCurrentFighter.getDefence()+25);
+            myCurrentFighter.setLifePoints(700);
+            myCurrentFighter.setDefence(myCurrentFighter.getDefence()+20);
         }
     }
 }
