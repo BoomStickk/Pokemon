@@ -86,7 +86,7 @@ public class MenuLayout {
 
     public static void checkValidInput(Scanner sc, String pattern, String s) {
         while (!sc.hasNext(pattern)) {
-            System.out.print(s);
+            System.out.println(s);
             sc.next();
         }
     }

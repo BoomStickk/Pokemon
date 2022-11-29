@@ -213,6 +213,10 @@ public class Game {
             case 3 -> result = myPokemon.get(2);
         }
         setMyCurrentFighter(result);
+        System.out.println("Press enter to continue");
+        MenuLayout.promptEnterKey();
+        drawVersusScreen();
+
 
     }
 
@@ -228,7 +232,7 @@ public class Game {
 
     public void fightBattle() {
         while (true) {
-            drawVersusScreen();
+
 
             if (actOpponentTurn()) break;
 
@@ -251,14 +255,12 @@ public class Game {
                 setCrystalCounter(getCrystalCounter() + 1);
                 System.out.println("you currently have " + crystalCounter + "\n");
                 setOpponentCurrentFighter(getEnemyPokemon(enemyPokemon));
-
-
                 evolve();
                 changeEvolutionStats();
+
                 System.out.println("Press enter to continue");
                 MenuLayout.promptEnterKey();
-
-
+                drawVersusScreen();
                 printEnemyPokemon();
             }
 
@@ -288,6 +290,7 @@ public class Game {
             } else {
                 System.out.println(getMyCurrentFighter().getName() + "is knocked out \n");
                 changeTurn();
+
             }
         } else {
             System.out.println("Game over, you win");
