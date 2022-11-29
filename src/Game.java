@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class Game {
     private final ArrayList<Pokemon> myPokemon;
     private final ArrayList<Pokemon> enemyPokemon;
-    private final ArrayList<Pokemon> allPokemon;
     private int crystalCounter = 0;
     private Pokemon myCurrentFighter = null;
     private Pokemon opponentCurrentFighter = null;
@@ -18,10 +17,9 @@ public class Game {
         this.crystalCounter = crystalCounter;
     }
 
-    Game(ArrayList<Pokemon> myPokemon, ArrayList<Pokemon> enemyPokemon,ArrayList<Pokemon>allPokemon) {
+    Game(ArrayList<Pokemon> myPokemon, ArrayList<Pokemon> enemyPokemon) {
         this.myPokemon = myPokemon;
         this.enemyPokemon = enemyPokemon;
-        this.allPokemon=allPokemon;
     }
 
     public int normalAttack() {
