@@ -207,15 +207,20 @@ public class Game implements Actionable {
         int choice = in.nextInt();
 
 
+        result = getTheChoice(myPokemon, result, choice);
+        setMyCurrentFighter(result);
+        drawVersusScreen();
+
+
+    }
+
+    private static Pokemon getTheChoice(ArrayList<Pokemon> myPokemon, Pokemon result, int choice) {
         switch (choice) {
             case 1 -> result = myPokemon.get(0);
             case 2 -> result = myPokemon.get(1);
             case 3 -> result = myPokemon.get(2);
         }
-        setMyCurrentFighter(result);
-        drawVersusScreen();
-
-
+        return result;
     }
 
     public Pokemon changeTurn() {
