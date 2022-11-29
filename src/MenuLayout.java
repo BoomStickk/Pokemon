@@ -67,7 +67,7 @@ public class MenuLayout implements Choosable{
                         The elemental dependency causes the attacker to ignore his opponent defence, and if the weaker attacks the stronger the defence is doubled. \s
                         Furthermore, each Pokemon specializes in attack or defense. If it specializes in attack, it does more damage, and if it specializes in defense, it can take more damage\s
                         from the opponent.
-                        When your Pokemon defeats an enemy he evolves and gets boost to his stats and is instantly healed to its new max hp.
+                        When your Pokemon defeats an enemy he evolves and gets boost to his stats and is instantly healed by 200 life points.
                              TYPE STRENGTH CHART:
                              ——————————————————
                             |   WATER  →  FIRE |
