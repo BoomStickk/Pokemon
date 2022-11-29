@@ -213,8 +213,6 @@ public class Game implements Actionable {
             case 3 -> result = myPokemon.get(2);
         }
         setMyCurrentFighter(result);
-        System.out.println("Press enter to continue");
-        MenuLayout.promptEnterKey();
         drawVersusScreen();
 
 
@@ -257,11 +255,13 @@ public class Game implements Actionable {
                 setOpponentCurrentFighter(getEnemyPokemon(enemyPokemon));
                 evolve();
                 changeEvolutionStats();
-
+                if(getOpponentCurrentFighter().getLifePoints()>0) {
                 System.out.println("Press enter to continue");
                 MenuLayout.promptEnterKey();
-                drawVersusScreen();
-                printEnemyPokemon();
+
+                    drawVersusScreen();
+                    printEnemyPokemon();
+                }
             }
 
         } else {
