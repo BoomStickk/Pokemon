@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game {
+public class Game implements Actionable {
     private final ArrayList<Pokemon> myPokemon;
     private final ArrayList<Pokemon> enemyPokemon;
     private int crystalCounter = 0;

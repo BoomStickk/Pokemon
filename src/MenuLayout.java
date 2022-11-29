@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MenuLayout {
+public class MenuLayout implements Choosable{
     private final ArrayList<Pokemon> pokemonChoice;
     private final ArrayList<Pokemon> myPokemon;
     private final Game game;
