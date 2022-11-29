@@ -81,6 +81,15 @@ public  class Pokemon {
     public void calculateElementalAttack(){
 
     }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
     public void calculateNormalAttack(){
 
     }

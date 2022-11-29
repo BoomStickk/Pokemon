@@ -16,6 +16,7 @@ public class Main {
         ArrayList<Pokemon> pokemonChoice = new ArrayList<>();
         ArrayList<Pokemon> myPokemon = new ArrayList<>();
         ArrayList<Pokemon> enemyPokemon=new ArrayList<>();
+        ArrayList<Pokemon> allPokemon=new ArrayList<>();
         ArrayList<Game>game=new ArrayList<>();
         pokemonChoice.add(electric1);
         pokemonChoice.add(fire1);
@@ -27,7 +28,9 @@ public class Main {
         enemyPokemon.add(electric2);
         enemyPokemon.add(rock3);
         enemyPokemon.add(fire3);
-        Game game1=new Game(myPokemon,enemyPokemon);
+        allPokemon.addAll(pokemonChoice);
+        allPokemon.addAll(enemyPokemon);
+        Game game1=new Game(myPokemon,enemyPokemon,allPokemon);
         MenuLayout menu = new MenuLayout(pokemonChoice,myPokemon,game1);
         System.out.println();
 

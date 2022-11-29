@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Game {
     private final ArrayList<Pokemon> myPokemon;
     private final ArrayList<Pokemon> enemyPokemon;
+    private final ArrayList<Pokemon> allPokemon;
     private int crystalCounter = 0;
     private Pokemon myCurrentFighter = null;
     private Pokemon opponentCurrentFighter = null;
@@ -17,9 +18,10 @@ public class Game {
         this.crystalCounter = crystalCounter;
     }
 
-    Game(ArrayList<Pokemon> myPokemon, ArrayList<Pokemon> enemyPokemon) {
+    Game(ArrayList<Pokemon> myPokemon, ArrayList<Pokemon> enemyPokemon,ArrayList<Pokemon>allPokemon) {
         this.myPokemon = myPokemon;
         this.enemyPokemon = enemyPokemon;
+        this.allPokemon=allPokemon;
     }
 
     public int normalAttack() {
@@ -163,26 +165,22 @@ public class Game {
 
     public void printEnemyPokemon() {
         if (getOpponentCurrentFighter() == enemyPokemon.get(0)) {
-            MenuLayout.drawFiles("cubone.txt");
             System.out.println(enemyPokemon.get(0) + "\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(1)) {
-            MenuLayout.drawFiles("kecleon.txt");
+
             System.out.println("Get ready for the second battle");
             System.out.println(enemyPokemon.get(1) + "\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(2)) {
-            MenuLayout.drawFiles("raichu.txt");
             System.out.println("The third won't be as easy");
             System.out.println(enemyPokemon.get(2) + "\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(3)) {
-            MenuLayout.drawFiles("tyranitar.txt");
             System.out.println("You are doing pretty good, onto the forth");
             System.out.println(enemyPokemon.get(3) + "\n");
         }
         if (getOpponentCurrentFighter() == enemyPokemon.get(4)) {
-            MenuLayout.drawFiles("charizard.txt");
             System.out.println("You have no chance, you will be done in this final battle");
             System.out.println(enemyPokemon.get(4) + "\n");
         }
@@ -255,6 +253,14 @@ public class Game {
                 setCrystalCounter(getCrystalCounter() + 1);
                 System.out.println("you currently have " + crystalCounter + "\n");
                 setOpponentCurrentFighter(getEnemyPokemon(enemyPokemon));
+
+
+                evolve();
+                changeEvolutionStats();
+                System.out.println("Press enter to continue");
+                MenuLayout.promptEnterKey();
+
+
                 printEnemyPokemon();
             }
 
@@ -381,6 +387,26 @@ public class Game {
             MenuLayout.drawFiles("sandshru vs tyranitar.txt");
         } else if (getMyCurrentFighter().getName().equals("Sandshry") && getOpponentCurrentFighter().getName().equals("Charizard")) {
             MenuLayout.drawFiles("sandshru vs charizard.txt");
+        }
+    }
+    public void evolve(){
+        if(myCurrentFighter.getSize().equals("small")){
+            myCurrentFighter.setSize("medium");
+            System.out.println(myCurrentFighter.getName()+" evolved to "+getMyCurrentFighter().getSize());
+        }else if(myCurrentFighter.getSize().equals("medium")){
+            myCurrentFighter.setSize("big");
+            System.out.println(myCurrentFighter.getName()+" evolved to "+getMyCurrentFighter().getSize());
+        }
+    }
+    public void changeEvolutionStats(){
+        if(myCurrentFighter.getSize().equals("medium")){
+            myCurrentFighter.setAttack(myCurrentFighter.getAttack()+20);
+            myCurrentFighter.setLifePoints(myCurrentFighter.getLifePoints()+50);
+            myCurrentFighter.setDefence(myCurrentFighter.getDefence()+10);
+        }else if(myCurrentFighter.getSize().equals("big")){
+            myCurrentFighter.setAttack(myCurrentFighter.getAttack()+50);
+            myCurrentFighter.setLifePoints(myCurrentFighter.getLifePoints()+100);
+            myCurrentFighter.setDefence(myCurrentFighter.getDefence()+25);
         }
     }
 }
