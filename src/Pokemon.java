@@ -55,9 +55,9 @@ public  class Pokemon {
     @Override
     public String toString() {
         return
-                "name=" + name + '\'' +
-                ", size='" + size + '\'' +
-                ", appearance='" + appearance + '\'' +
+                "name=" + name  +
+                ", size=" + size +
+                ", appearance=" + appearance +
                 ", attack=" + attack +
                 ", defence=" + defence +
                 ", lifePoints=" + lifePoints+
