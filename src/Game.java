@@ -410,11 +410,6 @@ public class Game implements Actionable {
             myCurrentFighter.setDefence(myCurrentFighter.getDefence()+20);
         }
     }
-    public void printPokemonInfo(ArrayList<Pokemon> myPokemon) {
-        for (int i = 0; i < myPokemon.size(); i++) {
-            System.out.println((i + 1) + " " + myPokemon.get(i));
-        }
-    }
 }
 
 
