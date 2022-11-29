@@ -55,10 +55,7 @@ public class MenuLayout implements Choosable{
                 choosePokemon(pokemonChoice, myPokemon);
                 game.startGame(myPokemon);
                 game.chooseMyPokemon(myPokemon);
-
                 game.fightBattle();
-
-
                 System.out.println("\n" + "Press enter to continue...");
                 promptEnterKey();
             }
@@ -67,8 +64,16 @@ public class MenuLayout implements Choosable{
                         The Pokemon you're fighting against attacks first. Each Pokemon has their own weakness and strength.\s
                         A Water Pokemon is stronger in a battle against a Fire Pokemon. If a Fire Pokemon attacks a Water Pokemon, the Fire Pokemon's attack will be less damaging.\s
                         A Fire Pokemon does more damage to a Rock Pokemon, and a Rock Pokemon does more damage to an Electric Pokemon. A Water Pokemon is weaker than an Electric Pokemon.\s
+                        The elemental dependency causes the attacker to ignore his opponent defence, and if the weaker attacks the stronger the defence is doubled. \s
                         Furthermore, each Pokemon specializes in attack or defense. If it specializes in attack, it does more damage, and if it specializes in defense, it can take more damage\s
                         from the opponent.
+                        When your Pokemon defeats an enemy he evolves and gets boost to his stats and is instantly healed to its new max hp.
+                             TYPE STRENGTH CHART:
+                             ——————————————————
+                            |   WATER  →  FIRE |
+                            |    ↑         ↓   |
+                            | ELECTRIC ←  ROCK |
+                             ——————————————————
                         Press Enter to go back to the Menu.""");
                 promptEnterKey();
             }

@@ -9,6 +9,7 @@ public class Game implements Actionable {
     private Pokemon opponentCurrentFighter = null;
     private int getMyDamage = 0;
 
+
     public int getCrystalCounter() {
         return crystalCounter;
     }
@@ -47,18 +48,23 @@ public class Game implements Actionable {
             }
             Scanner in = new Scanner(System.in);
             MenuLayout.checkValidInput(in, "[123]", "Invalid input(1,2,3): ");
-            int choice = in.nextInt();
-            switch (choice) {
-                case 1 -> myPokemon.get(0).setLifePoints(500);
-                case 2 -> myPokemon.get(1).setLifePoints(500);
-                case 3 -> myPokemon.get(2).setLifePoints(500);
-            }
+            healTheChosen(in);
             setCrystalCounter(getCrystalCounter() - 1);
             System.out.println("your pokemon has been healed, you used up 1 crystal, now you have" + getCrystalCounter() + "\npress enter to continue");
             MenuLayout.promptEnterKey();
         } else {
             System.out.println("you can't heal any pokemon\npress enter to continue ");
             MenuLayout.promptEnterKey();
+
+        }
+    }
+
+    private void healTheChosen(Scanner in) {
+        int choice = in.nextInt();
+        switch (choice) {
+            case 1 -> myPokemon.get(0).setLifePoints(500);
+            case 2 -> myPokemon.get(1).setLifePoints(500);
+            case 3 -> myPokemon.get(2).setLifePoints(500);
         }
     }
 
@@ -68,16 +74,12 @@ public class Game implements Actionable {
 
         for (int i = 0; i < myPokemon.size(); i++) {
             if (myPokemon.get(i).getLifePoints() > 0) {
-                System.out.println((i + 1) + " " + myPokemon.get(i).getName());
+                System.out.println((i + 1) + " " + myPokemon.get(i));
                 deathCounter++;
             }
         }
         if (deathCounter > 0) {
-
-
             chooseMyPokemon(myPokemon);
-        } else {
-            System.out.println("Game over, you lost ");
         }
     }
 
@@ -123,8 +125,6 @@ public class Game implements Actionable {
 
         } else if (choice == 3 || choice == 4) {
             fightBattle();
-        } else {
-            actMyTurn();
         }
 
     }
@@ -408,6 +408,11 @@ public class Game implements Actionable {
             myCurrentFighter.setAttack(myCurrentFighter.getAttack()+50);
             myCurrentFighter.setLifePoints(700);
             myCurrentFighter.setDefence(myCurrentFighter.getDefence()+20);
+        }
+    }
+    public void printPokemonInfo(ArrayList<Pokemon> myPokemon) {
+        for (int i = 0; i < myPokemon.size(); i++) {
+            System.out.println((i + 1) + " " + myPokemon.get(i));
         }
     }
 }
